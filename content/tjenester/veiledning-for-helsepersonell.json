@@ -1,0 +1,17 @@
+{
+  "tittel": "Veiledning for helsepersonell",
+  "undertittel": "Spesialtilpasset for omsorgssektoren",
+  "beskrivelse": "Filosofisk veiledning og kurs for sykepleiere, leger, sosionomer og andre som møter eksistensielle spørsmål i sin arbeidshverdag.",
+  "detaljer": [
+    "Individuell veiledning tilpasset helsefaglig kontekst",
+    "Gruppeveiledning for team og avdelinger",
+    "Foredrag og innlegg for fagdager",
+    "Kan inngå i kompetanseutviklingsplan"
+  ],
+  "priser": [
+    { "label": "Enkelttime (60 min)", "pris": "1 100 kr" },
+    { "label": "Gruppeveiledning (2 t, inntil 10)", "pris": "4 500 kr" },
+    { "label": "Foredrag/fagdag (3–4 t)", "pris": "Fra 8 500 kr" }
+  ],
+  "orden": 4
+}

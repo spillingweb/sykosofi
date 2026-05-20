@@ -1,0 +1,17 @@
+{
+  "tittel": "Nettkurs",
+  "undertittel": "Lær i ditt eget tempo",
+  "badge": "Fleksibelt",
+  "beskrivelse": "Fire ukentlige nettmøter der vi går i dybden på ett filosofisk tema. Passer for deg som ønsker struktur og fellesskap, men har fleksibelt tidsbudsjett.",
+  "detaljer": [
+    "Fire ganger 90 minutter over fire uker",
+    "Via Zoom — fra hele landet",
+    "Opptak tilgjengelig for alle deltakere",
+    "Kursmateriale inkludert"
+  ],
+  "priser": [
+    { "label": "4-ukers kurs", "pris": "800 kr" },
+    { "label": "Gjentakende deltaker (samme tema)", "pris": "400 kr" }
+  ],
+  "orden": 5
+}

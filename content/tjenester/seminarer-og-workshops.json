@@ -1,0 +1,17 @@
+{
+  "tittel": "Seminarer og workshops",
+  "undertittel": "Halvdags- og heldagsseminarer",
+  "beskrivelse": "Halvdags- og heldagsseminarer om filosofiske temaer. Passer for enkeltpersoner, organisasjoner og grupper. Kan tilpasses til bedrift eller skole.",
+  "detaljer": [
+    "Standardtema: Stoikernes visdom, Eksistensfilosofi, Filosofi og helse",
+    "Tilpassede temaer tilgjengelig",
+    "Kan holdes på stedet ditt",
+    "Kursbevis utdeles"
+  ],
+  "priser": [
+    { "label": "Halvdag (4 t)", "pris": "1 200 kr/pers" },
+    { "label": "Heldag (7 t)", "pris": "2 100 kr/pers" },
+    { "label": "Bedrift/org (inntil 20)", "pris": "Fra 14 000 kr" }
+  ],
+  "orden": 3
+}

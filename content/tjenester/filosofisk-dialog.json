@@ -1,0 +1,17 @@
+{
+  "tittel": "Filosofisk dialog",
+  "undertittel": "Individuell veiledning",
+  "beskrivelse": "En-til-en samtaler der vi utforsker dine spørsmål om mening, identitet, verdier og livsvalg. Tilpasses dine behov og din situasjon.",
+  "detaljer": [
+    "Enkeltsamtaler à 60 eller 90 minutter",
+    "Tilgjengelig i Fevik og på video",
+    "Ingen forkunnskaper nødvendig",
+    "Første konsultasjon (30 min) er gratis"
+  ],
+  "priser": [
+    { "label": "60 min", "pris": "950 kr" },
+    { "label": "90 min", "pris": "1 350 kr" },
+    { "label": "Pakke (5 × 60 min)", "pris": "4 250 kr" }
+  ],
+  "orden": 1
+}

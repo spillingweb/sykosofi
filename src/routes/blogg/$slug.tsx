@@ -114,7 +114,7 @@ function BloggPost() {
               </svg>
             </div>
             <div>
-              <p className="font-semibold text-[var(--sea-ink)]">Tina Marie Lie</p>
+              <p className="font-semibold text-[var(--sea-ink)]">Tina Maria Lie</p>
               <p className="text-sm text-[var(--sea-ink-soft)]">
                 Sykepleier og filosof · Fevik, Agder
               </p>

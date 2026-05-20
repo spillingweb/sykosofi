@@ -239,6 +239,137 @@ export default defineConfig({
           },
         ],
       },
+
+      /* ── SERVICES (tjenester) ──────────────────────────────── */
+      {
+        name: 'tjenester',
+        label: 'Tjenester',
+        path: 'content/tjenester',
+        format: 'json',
+        ui: {
+          filename: {
+            readonly: false,
+            slugify: (values) =>
+              values?.['tittel']
+                ? (values['tittel'] as string)
+                    .toLowerCase()
+                    .replace(/æ/g, 'ae')
+                    .replace(/ø/g, 'o')
+                    .replace(/å/g, 'a')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-|-$/g, '')
+                : 'tjeneste',
+          },
+        },
+        fields: [
+          {
+            type: 'string',
+            name: 'tittel',
+            label: 'Tittel',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'undertittel',
+            label: 'Undertittel',
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'badge',
+            label: 'Badge (valgfritt)',
+            description: 'F.eks. "Populær" eller "Fleksibelt"',
+          },
+          {
+            type: 'string',
+            name: 'beskrivelse',
+            label: 'Beskrivelse',
+            ui: { component: 'textarea' },
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'detaljer',
+            label: 'Detaljer',
+            list: true,
+            ui: {
+              component: 'list',
+              defaultItem: 'Ny detalj',
+            },
+          },
+          {
+            type: 'object',
+            name: 'priser',
+            label: 'Priser',
+            list: true,
+            fields: [
+              {
+                type: 'string',
+                name: 'label',
+                label: 'Label (f.eks. "60 min")',
+                required: true,
+              },
+              {
+                type: 'string',
+                name: 'pris',
+                label: 'Pris (f.eks. "950 kr")',
+                required: true,
+              },
+            ],
+          },
+          {
+            type: 'number',
+            name: 'orden',
+            label: 'Sorteringsrekkefølge',
+            description: 'Lavere tall vises først',
+          },
+        ],
+      },
+
+      /* ── EDUCATION (utdanning) ──────────────────────────────── */
+      {
+        name: 'utdanning',
+        label: 'Utdanning og kurs',
+        path: 'content/utdanning',
+        format: 'json',
+        ui: {
+          filename: {
+            readonly: false,
+            slugify: (values) =>
+              values?.['grad']
+                ? (values['grad'] as string)
+                    .toLowerCase()
+                    .replace(/æ/g, 'ae')
+                    .replace(/ø/g, 'o')
+                    .replace(/å/g, 'a')
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-|-$/g, '')
+                : 'utdanning',
+          },
+        },
+        fields: [
+          {
+            type: 'string',
+            name: 'ar',
+            label: 'År',
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'grad',
+            label: 'Grad/kurs',
+            isTitle: true,
+            required: true,
+          },
+          {
+            type: 'string',
+            name: 'sted',
+            label: 'Institusjon',
+            required: true,
+          },
+        ],
+      },
     ],
   },
 })

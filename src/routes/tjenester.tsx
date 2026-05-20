@@ -1,139 +1,60 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { loadPage } from '#/lib/load-content'
-import { MarkdownPage } from '#/components/MarkdownPage'
-
-export const Route = createFileRoute('/tjenester')({
-  component: Tjenester,
-  loader: async () => {
-    const pageContent = await loadPage('tjenester')
-    return { pageContent }
-  },
-})
-
-function Tjenester() {
-  const { pageContent } = Route.useLoaderData()
-  
-  return (
-    <MarkdownPage
-      title={pageContent.title}
-      subtitle={pageContent.subtitle}
-      intro={pageContent.intro}
-      body={pageContent.body}
-    />
-  )
-}
+import { createServerFn } from '@tanstack/react-start'
+import { Button } from '#/components/ui/button'
+import { Badge } from '#/components/ui/badge'
 
 interface TjenestePris {
-  id: string
   tittel: string
   undertittel: string
   beskrivelse: string
   detaljer: string[]
   priser: { label: string; pris: string }[]
   badge?: string
+  orden: number
 }
 
-const tjenester: TjenestePris[] = [
-  {
-    id: 'dialog',
-    tittel: 'Filosofisk dialog',
-    undertittel: 'Individuell veiledning',
-    beskrivelse:
-      'En-til-en samtaler der vi utforsker dine spørsmål om mening, identitet, verdier og livsvalg. Tilpasses dine behov og din situasjon.',
-    detaljer: [
-      'Enkeltsamtaler à 60 eller 90 minutter',
-      'Tilgjengelig i Fevik og på video',
-      'Ingen forkunnskaper nødvendig',
-      'Første konsultasjon (30 min) er gratis',
-    ],
-    priser: [
-      { label: '60 min', pris: '950 kr' },
-      { label: '90 min', pris: '1 350 kr' },
-      { label: 'Pakke (5 × 60 min)', pris: '4 250 kr' },
-    ],
-  },
-  {
-    id: 'grupper',
-    tittel: 'Samtalegrupper',
-    undertittel: 'Månedlige grupper',
-    badge: 'Populær',
-    beskrivelse:
-      'Månedlige samtalegrupper der vi utforsker eksistensielle spørsmål i trygt og inkluderende fellesskap. Maks 8 deltakere per gruppe.',
-    detaljer: [
-      'Første mandag i måneden, 17:30–19:30',
-      'Fevik — Grimstadveien 8',
-      'Ny deltaker kan bli med når som helst',
-      'Tre måneder minstetid anbefales',
-    ],
-    priser: [
-      { label: 'Per samling', pris: '450 kr' },
-      { label: 'Kvartal (3 samlinger)', pris: '1 200 kr' },
-      { label: 'Halvår (6 samlinger)', pris: '2 100 kr' },
-    ],
-  },
-  {
-    id: 'seminarer',
-    tittel: 'Seminarer og workshops',
-    undertittel: 'Halvdags- og heldagsseminarer',
-    beskrivelse:
-      'Halvdags- og heldagsseminarer om filosofiske temaer. Passer for enkeltpersoner, organisasjoner og grupper. Kan tilpasses til bedrift eller skole.',
-    detaljer: [
-      'Standardtema: Stoikernes visdom, Eksistensfilosofi, Filosofi og helse',
-      'Tilpassede temaer tilgjengelig',
-      'Kan holdes på stedet ditt',
-      'Kursbevis utdeles',
-    ],
-    priser: [
-      { label: 'Halvdag (4 t)', pris: '1 200 kr/pers' },
-      { label: 'Heldag (7 t)', pris: '2 100 kr/pers' },
-      { label: 'Bedrift/org (inntil 20)', pris: 'Fra 14 000 kr' },
-    ],
-  },
-  {
-    id: 'helsepersonell',
-    tittel: 'Veiledning for helsepersonell',
-    undertittel: 'Spesialtilpasset for omsorgssektoren',
-    beskrivelse:
-      'Filosofisk veiledning og kurs for sykepleiere, leger, sosionomer og andre som møter eksistensielle spørsmål i sin arbeidshverdag.',
-    detaljer: [
-      'Individuell veiledning tilpasset helsefaglig kontekst',
-      'Gruppeveiledning for team og avdelinger',
-      'Foredrag og innlegg for fagdager',
-      'Kan inngå i kompetanseutviklingsplan',
-    ],
-    priser: [
-      { label: 'Enkelttime (60 min)', pris: '1 100 kr' },
-      { label: 'Gruppeveiledning (2 t, inntil 10)', pris: '4 500 kr' },
-      { label: 'Foredrag/fagdag (3–4 t)', pris: 'Fra 8 500 kr' },
-    ],
-  },
-  {
-    id: 'nettkurs',
-    tittel: 'Nettkurs',
-    undertittel: 'Lær i ditt eget tempo',
-    badge: 'Fleksibelt',
-    beskrivelse:
-      'Fire ukentlige nettmøter der vi går i dybden på ett filosofisk tema. Passer for deg som ønsker struktur og fellesskap, men har fleksibelt tidsbudsjett.',
-    detaljer: [
-      'Fire ganger 90 minutter over fire uker',
-      'Via Zoom — fra hele landet',
-      'Kursmateriell sendes på e-post',
-      'Opptak tilgjengelig i en uke',
-    ],
-    priser: [
-      { label: 'Per kurs (4 × 90 min)', pris: '800 kr' },
-      { label: 'To kurs', pris: '1 400 kr' },
-    ],
-  },
-]
+interface TjenesteWithId extends TjenestePris {
+  id: string
+}
 
-function Tjenester() {
-  return (
-    <main className="page-wrap px-4 py-12">
-      {/* Header */}
-      <section className="rise-in px-6 py-10">
-        <p className="island-kicker mb-3">Tjenester og priser</p>
-        <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
+const getTjenester = createServerFn({ method: 'GET' }).handler(async () => {
+  const fs = await import('node:fs/promises')
+  const path = await import('node:path')
+
+  const tjenesteDir = path.join(process.cwd(), 'content/tjenester')
+  const files = await fs.readdir(tjenesteDir)
+  const jsonFiles = files.filter((file) => file.endsWith('.json'))
+
+  const tjenester: TjenesteWithId[] = await Promise.all(
+    jsonFiles.map(async (file) => {
+      const filePath = path.join(tjenesteDir, file)
+      const content = await fs.readFile(filePath, 'utf-8')
+      const data = JSON.parse(content) as TjenestePris
+      const id = file.replace('.json', '')
+      return { ...data, id }
+    }),
+  )
+
+  // Sort by orden field
+  tjenester.sort((a, b) => a.orden - b.orden)
+
+  return tjenester
+})
+
+export const Route = createFileRoute('/tjenester')({
+  loader: async () => {
+    const tjenester = await getTjenester()
+    return { tjenester }
+  },
+  component: () => {
+    const { tjenester } = Route.useLoaderData()
+
+    return (
+      <main className="page-wrap px-4 py-12">
+        {/* Header */}
+        <section className="rise-in py-5">
+          <p className="island-kicker mb-3">Tjenester og priser</p>
+          <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
           Finn rett tilbud for deg
         </h1>
         <p className="max-w-2xl text-[var(--sea-ink-soft)] leading-relaxed">
@@ -250,5 +171,6 @@ function Tjenester() {
         </Button>
       </div>
     </main>
-  )
-}
+    )
+  },
+})

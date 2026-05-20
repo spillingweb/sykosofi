@@ -17,7 +17,7 @@ export const Route = createRootRoute({
       {
         name: 'description',
         content:
-          'Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Tina Marie Lie hjelper deg å utforske livets store spørsmål.',
+          'Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Tina Maria Lie hjelper deg å utforske livets store spørsmål.',
       },
       { name: 'keywords', content: 'filosofisk veiledning, samtalegruppe, seminar, Fevik, Agder, filosofi, sykepleier, eksistensiell samtale' },
       { property: 'og:title', content: 'Filosamtale — Filosofisk veiledning og dialog' },

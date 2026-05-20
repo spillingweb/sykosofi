@@ -1,0 +1,18 @@
+{
+  "tittel": "Samtalegrupper",
+  "undertittel": "Månedlige grupper",
+  "badge": "Populær",
+  "beskrivelse": "Månedlige samtalegrupper der vi utforsker eksistensielle spørsmål i trygt og inkluderende fellesskap. Maks 8 deltakere per gruppe.",
+  "detaljer": [
+    "Første mandag i måneden, 17:30–19:30",
+    "Fevik — Grimstadveien 8",
+    "Ny deltaker kan bli med når som helst",
+    "Tre måneder minstetid anbefales"
+  ],
+  "priser": [
+    { "label": "Per samling", "pris": "450 kr" },
+    { "label": "Kvartal (3 samlinger)", "pris": "1 200 kr" },
+    { "label": "Halvår (6 samlinger)", "pris": "2 100 kr" }
+  ],
+  "orden": 2
+}

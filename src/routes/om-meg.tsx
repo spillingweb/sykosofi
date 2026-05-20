@@ -1,27 +1,8 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { loadPage } from '#/lib/load-content'
-import { MarkdownPage } from '#/components/MarkdownPage'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { Button } from '#/components/ui/button'
+import { Badge } from '#/components/ui/badge'
 
-export const Route = createFileRoute('/om-meg')({
-  component: OmMeg,
-  loader: async () => {
-    const pageContent = await loadPage('om-meg')
-    return { pageContent }
-  },
-})
-
-function OmMeg() {
-  const { pageContent } = Route.useLoaderData()
-  
-  return (
-    <MarkdownPage
-      title={pageContent.title}
-      subtitle={pageContent.subtitle}
-      intro={pageContent.intro}
-      body={pageContent.body}
-    />
-  )
-}
+export const Route = createFileRoute('/om-meg')({ component: OmMeg })
 
 const verdier = [
   {
@@ -47,10 +28,10 @@ const verdier = [
 ]
 
 const utdanning = [
-  { år: '2016', grad: 'Master i filosofi', sted: 'Universitetet i Oslo' },
-  { år: '2008', grad: 'Bachelorgrad i sykepleie', sted: 'Universitetet i Agder' },
+  { ar: '2016', grad: 'Master i filosofi', sted: 'Universitetet i Oslo' },
+  { ar: '2008', grad: 'Bachelorgrad i sykepleie', sted: 'Universitetet i Agder' },
   {
-    år: '2022',
+    ar: '2022',
     grad: 'Videreutdanning i filosofisk praksis',
     sted: 'NFPF — Norsk Forening for Filosofisk Praksis',
   },
@@ -60,8 +41,7 @@ function OmMeg() {
   return (
     <main className="page-wrap px-4 py-12">
       {/* Header */}
-      <section className="rise-in relative px-6 py-10">
-        <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(197,164,122,0.24),transparent_66%)]" />
+      <section className="rise-in py-5">
         <p className="island-kicker mb-3">Om meg</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
           Tina Marie Lie
@@ -81,15 +61,11 @@ function OmMeg() {
         {/* Portrait */}
         <div className="lg:col-span-1">
           <div className="island-shell overflow-hidden rounded-2xl">
-            <div className="flex aspect-square w-full items-end justify-center bg-[radial-gradient(ellipse_at_30%_20%,rgba(79,184,178,0.14),transparent_60%),radial-gradient(ellipse_at_70%_80%,rgba(197,164,122,0.14),transparent_60%),var(--bg-base)] p-4">
-              <div className="relative flex h-full w-full items-end justify-center">
-                <div className="absolute bottom-0 h-[68%] w-28 rounded-t-full bg-[var(--sand)] opacity-50" />
-                <div className="absolute bottom-[66%] h-20 w-20 rounded-full bg-[var(--sand)] opacity-50" />
-                <p className="relative z-10 mb-4 text-center text-xs text-[var(--sea-ink-soft)]">
-                  Profilbilde kommer snart
-                </p>
-              </div>
-            </div>
+            <img
+              src="/uploads/profile.jpg"
+              alt="Tina Marie Lie - Sykepleier og filosof"
+              className="aspect-square w-full object-cover"
+            />
           </div>
 
           <div className="mt-5 space-y-2 rounded-xl bg-muted/40 p-4 text-sm text-[var(--sea-ink-soft)]">
@@ -164,10 +140,10 @@ function OmMeg() {
               Utdanning og kurs
             </h2>
             <ul className="space-y-4">
-              {utdanning.map(({ år, grad, sted }) => (
+              {utdanning.map(({ ar, grad, sted }) => (
                 <li key={grad} className="flex items-start gap-4">
                   <Badge variant="secondary" className="mt-0.5 shrink-0">
-                    {år}
+                    {ar}
                   </Badge>
                   <div>
                     <p className="font-medium text-[var(--sea-ink)]">{grad}</p>

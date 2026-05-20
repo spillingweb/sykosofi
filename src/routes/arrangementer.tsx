@@ -130,7 +130,7 @@ function Arrangementer() {
   return (
     <main className="page-wrap px-4 py-12">
       {/* Header */}
-      <section className="rise-in px-6 py-10">
+      <section className="rise-in py-5">
         <p className="island-kicker mb-3">Arrangementer</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
           Kommende arrangementer

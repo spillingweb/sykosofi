@@ -60,19 +60,33 @@ function Forside() {
   return (
     <main>
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="page-wrap px-4 pb-8 pt-12">
-        <div className="rise-in px-6 py-12 sm:px-12 sm:py-16">
-      
+      <section className="relative pb-4">
+        {/* Hero visual */}
+        <div className="relative overflow-hidden">
+          <img
+            src="/uploads/hero-chairs.jpg"
+            alt="Two empty chairs in an open street"
+            className="aspect-[16/7] w-full object-bottom object-cover"
+            style={{
+              filter: 'sepia(0.15) saturate(0.95) hue-rotate(-5deg) brightness(1.02) contrast(1.05)',
+              maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+            }}
+          />
+        </div>
+
+        <div className="page-wrap px-2 sm:px-4 mt-6 sm:-mt-16 lg:-mt-24 relative z-10">
+          <div className="rise-in mx-auto max-w-4xl text-center">
           <p className="island-kicker mb-3">Filosofisk veiledning · Fevik, Agder</p>
-          <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.06] font-bold tracking-tight text-[var(--sea-ink)] sm:text-5xl lg:text-6xl">
+          <h1 className="display-title mb-5 text-4xl leading-[1.06] font-bold tracking-tight text-[var(--sea-ink)] sm:text-5xl lg:text-6xl">
             Finn mening og retning gjennom filosofisk dialog
           </h1>
-          <p className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] leading-relaxed sm:text-lg">
+          <p className="mx-auto mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] leading-relaxed sm:text-lg">
             Jeg er sykepleier og filosof, og hjelper deg å utforske livets store spørsmål — om
             mening, verdier, identitet og hvordan vi ønsker å leve. Gjennom samtale og refleksjon
             finner vi klarhet og retning.
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             <Button asChild size="lg">
               <Link to="/tjenester">Se tjenester og priser</Link>
             </Button>
@@ -82,7 +96,7 @@ function Forside() {
           </div>
 
           {/* Stat bar */}
-          <div className="mt-12 grid grid-cols-3 gap-4 border-t border-[var(--line)] pt-8 sm:max-w-lg">
+          <div className="mx-auto mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-[var(--line)] pt-8">
             {[
               ['10+', 'Års erfaring'],
               ['200+', 'Samtaler'],
@@ -95,10 +109,11 @@ function Forside() {
             ))}
           </div>
         </div>
+        </div>
       </section>
 
       {/* ── TJENESTER OVERVIEW ────────────────────────────────── */}
-      <section className="page-wrap px-4 pb-12 pt-4">
+      <section className="page-wrap px-2 sm:px-4 pb-12 pt-6">
         <div className="mb-8 text-center">
           <p className="island-kicker mb-2">Hva jeg tilbyr</p>
           <h2 className="display-title text-3xl font-bold text-[var(--sea-ink)] sm:text-4xl">
@@ -134,7 +149,7 @@ function Forside() {
       </section>
 
       {/* ── QUOTE DIVIDER ─────────────────────────────────────── */}
-      <section className="px-4 py-12">
+      <section className="px-2 sm:px-4 py-12">
         <div className="page-wrap">
           <blockquote className="island-shell rise-in rounded-2xl px-8 py-10 text-center sm:px-16">
             <p className="display-title mb-4 text-2xl font-bold italic text-[var(--sea-ink)] leading-relaxed sm:text-3xl">
@@ -146,21 +161,16 @@ function Forside() {
       </section>
 
       {/* ── OM MEG TEASER ─────────────────────────────────────── */}
-      <section className="page-wrap px-4 py-12">
+      <section className="page-wrap px-2 sm:px-4 py-12">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           {/* Placeholder portrait */}
           <div className="order-2 lg:order-1">
             <div className="island-shell overflow-hidden rounded-2xl">
-              <div
-                className="flex aspect-[4/3] w-full items-end justify-center rounded-2xl bg-[radial-gradient(ellipse_at_30%_20%,rgba(79,184,178,0.18),transparent_60%),radial-gradient(ellipse_at_70%_80%,rgba(197,164,122,0.18),transparent_60%),var(--bg-base)] p-6"
-              >
-                {/* Stylised silhouette placeholder */}
-                <div className="relative flex h-full w-full items-end justify-center">
-                  <div className="absolute bottom-0 h-[70%] w-32 rounded-t-full bg-[var(--sand)] opacity-60" />
-                  <div className="absolute bottom-[68%] h-24 w-24 rounded-full bg-[var(--sand)] opacity-60" />
-                  <p className="relative z-10 mb-6 text-sm text-[var(--sea-ink-soft)]">Bilde kommer snart</p>
-                </div>
-              </div>
+              <img
+                src="/uploads/profile.jpg"
+                alt="Tina Marie Lie - Sykepleier og filosof"
+                className="aspect-[4/3] w-full object-cover"
+              />
             </div>
           </div>
 
@@ -186,7 +196,7 @@ function Forside() {
       </section>
 
       {/* ── BLOGG TEASER ──────────────────────────────────────── */}
-      <section className="page-wrap px-4 py-12">
+      <section className="page-wrap px-2 sm:px-4 py-12">
         <div className="mb-8 flex items-end justify-between">
           <div>
             <p className="island-kicker mb-2">Fra bloggen</p>
@@ -246,7 +256,7 @@ function Forside() {
       </section>
 
       {/* ── CTA BAND ──────────────────────────────────────────── */}
-      <section className="px-4 pb-16 pt-8">
+      <section className="px-2 sm:px-4 pb-16 pt-8">
         <div className="page-wrap">
           <div className="island-shell rounded-2xl px-8 py-10 text-center sm:px-16">
             <p className="island-kicker mb-3">Neste steg</p>
