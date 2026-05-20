@@ -112,7 +112,7 @@ function Tjenester() {
   return (
     <main className="page-wrap px-4 py-12">
       {/* Header */}
-      <section className="island-shell rise-in relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 sm:py-12">
+      <section className="rise-in relative px-6 py-10 sm:px-10 sm:py-12">
         <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.24),transparent_66%)]" />
         <p className="island-kicker mb-3">Tjenester og priser</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
