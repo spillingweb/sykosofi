@@ -245,11 +245,7 @@ var config_default = defineConfig({
             type: "string",
             name: "detaljer",
             label: "Detaljer",
-            list: true,
-            ui: {
-              component: "list",
-              defaultItem: "Ny detalj"
-            }
+            list: true
           },
           {
             type: "object",

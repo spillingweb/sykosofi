@@ -293,10 +293,6 @@ export default defineConfig({
             name: 'detaljer',
             label: 'Detaljer',
             list: true,
-            ui: {
-              component: 'list',
-              defaultItem: 'Ny detalj',
-            },
           },
           {
             type: 'object',
