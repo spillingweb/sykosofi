@@ -13,7 +13,7 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart({
       nitro: {
-        preset: 'netlify',
+        preset: 'vercel',
         rollupConfig: { external: [/^@sentry\//] }
       }
     }),
