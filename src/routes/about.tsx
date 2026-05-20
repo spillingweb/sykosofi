@@ -39,7 +39,7 @@ function OmMeg() {
         <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(197,164,122,0.24),transparent_66%)]" />
         <p className="island-kicker mb-3">Om meg</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
-          Anne Linn Haugen
+          Tina Marie Lie
         </h1>
         <p className="mb-4 text-lg text-[var(--sea-ink-soft)]">
           Sykepleier · Filosof · Grunnlegger av Filosamtale
@@ -70,7 +70,7 @@ function OmMeg() {
               <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" className="text-[var(--lagoon)]">
                 <path d="M8 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H1z" />
               </svg>
-              Anne Linn Haugen
+              Tina Marie Lie
             </div>
             <div className="flex items-center gap-2 text-sm text-[var(--sea-ink-soft)]">
               <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" className="text-[var(--lagoon)]">

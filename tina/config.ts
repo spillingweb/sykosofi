@@ -203,10 +203,15 @@ export default defineConfig({
 
       /* ── PAGES (om meg, tjenester) ────────────────────────── */
       {
-        name: 'sider',
+        name: 'pages',
         label: 'Statiske sider',
-        path: 'content/sider',
+        path: 'content/pages',
         format: 'md',
+        ui: {
+          filename: {
+            readonly: true,
+          },
+        },
         fields: [
           {
             type: 'string',
@@ -214,6 +219,17 @@ export default defineConfig({
             label: 'Sidetittel',
             isTitle: true,
             required: true,
+          },
+          {
+            type: 'string',
+            name: 'subtitle',
+            label: 'Undertittel',
+          },
+          {
+            type: 'string',
+            name: 'intro',
+            label: 'Introtekst',
+            ui: { component: 'textarea' },
           },
           {
             type: 'rich-text',

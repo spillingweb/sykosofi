@@ -12,7 +12,7 @@ function Blogg() {
   return (
     <main className="page-wrap px-4 py-12">
       {/* Header */}
-      <section className="island-shell rise-in relative overflow-hidden rounded-2xl px-6 py-10 sm:px-10 sm:py-12">
+      <section className="rise-in relative px-6 py-10">
         <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.22),transparent_66%)]" />
         <p className="island-kicker mb-3">Blogg</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">

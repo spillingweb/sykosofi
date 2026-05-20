@@ -1,8 +1,27 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Button } from '#/components/ui/button'
-import { Badge } from '#/components/ui/badge'
+import { createFileRoute } from '@tanstack/react-router'
+import { loadPage } from '#/lib/load-content'
+import { MarkdownPage } from '#/components/MarkdownPage'
 
-export const Route = createFileRoute('/tjenester')({ component: Tjenester })
+export const Route = createFileRoute('/tjenester')({
+  component: Tjenester,
+  loader: async () => {
+    const pageContent = await loadPage('tjenester')
+    return { pageContent }
+  },
+})
+
+function Tjenester() {
+  const { pageContent } = Route.useLoaderData()
+  
+  return (
+    <MarkdownPage
+      title={pageContent.title}
+      subtitle={pageContent.subtitle}
+      intro={pageContent.intro}
+      body={pageContent.body}
+    />
+  )
+}
 
 interface TjenestePris {
   id: string
@@ -112,8 +131,7 @@ function Tjenester() {
   return (
     <main className="page-wrap px-4 py-12">
       {/* Header */}
-      <section className="rise-in relative px-6 py-10">
-        <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.24),transparent_66%)]" />
+      <section className="rise-in px-6 py-10">
         <p className="island-kicker mb-3">Tjenester og priser</p>
         <h1 className="display-title mb-4 max-w-2xl text-4xl font-bold text-[var(--sea-ink)] sm:text-5xl">
           Finn rett tilbud for deg

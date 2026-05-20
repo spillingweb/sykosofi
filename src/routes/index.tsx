@@ -60,12 +60,9 @@ function Forside() {
   return (
     <main>
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="page-wrap px-4 pb-8 pt-12 sm:pt-16">
-        <div className="island-shell rise-in relative overflow-hidden rounded-[2rem] px-6 py-12 sm:px-12 sm:py-16">
-          {/* Decorative blobs */}
-          <div className="pointer-events-none absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(79,184,178,0.28),transparent_66%)]" />
-          <div className="pointer-events-none absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(197,164,122,0.22),transparent_66%)]" />
-
+      <section className="page-wrap px-4 pb-8 pt-12">
+        <div className="rise-in px-6 py-12 sm:px-12 sm:py-16">
+      
           <p className="island-kicker mb-3">Filosofisk veiledning · Fevik, Agder</p>
           <h1 className="display-title mb-5 max-w-3xl text-4xl leading-[1.06] font-bold tracking-tight text-[var(--sea-ink)] sm:text-5xl lg:text-6xl">
             Finn mening og retning gjennom filosofisk dialog
@@ -170,7 +167,7 @@ function Forside() {
           <div className="order-1 lg:order-2">
             <p className="island-kicker mb-3">Om meg</p>
             <h2 className="display-title mb-4 text-3xl font-bold text-[var(--sea-ink)] sm:text-4xl">
-              Anne Linn Haugen
+              Tina Marie Lie
             </h2>
             <p className="mb-3 text-[var(--sea-ink-soft)] leading-relaxed">
               Jeg er utdannet sykepleier med master i filosofi, og har i over ti år arbeidet i
