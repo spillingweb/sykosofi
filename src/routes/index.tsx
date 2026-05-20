@@ -179,7 +179,7 @@ function Forside() {
             <p className="mb-6 text-[var(--sea-ink-soft)] leading-relaxed">
               Gjennom arbeidet som sykepleier erfarte jeg at mange av de viktigste spørsmålene
               mennesker bærer på, ikke er medisinske — de er filosofiske. Det var dette som ledet
-              meg til å grunnlegge Sykosofi.
+              meg til å grunnlegge Filosamtale.
             </p>
             <Button asChild>
               <Link to="/om-meg">Les mer om meg</Link>

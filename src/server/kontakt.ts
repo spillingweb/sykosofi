@@ -27,7 +27,7 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
   })
   .handler(async ({ data }): Promise<KontaktResult> => {
     const apiKey = process.env['BREVO_API_KEY']
-    const toEmail = process.env['CONTACT_TO_EMAIL'] ?? 'hei@sykosofi.no'
+    const toEmail = process.env['CONTACT_TO_EMAIL'] ?? 'hei@filosamtale.no'
 
     if (!apiKey) {
       console.error('[kontakt] BREVO_API_KEY er ikke satt')
@@ -35,7 +35,7 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
     }
 
     const html = `
-      <h2>Ny henvendelse fra sykosofi.no</h2>
+      <h2>Ny henvendelse fra filosamtale.no</h2>
       <p><strong>Navn:</strong> ${escHtml(data.navn)}</p>
       <p><strong>E-post:</strong> ${escHtml(data.epost)}</p>
       ${data.telefon ? `<p><strong>Telefon:</strong> ${escHtml(data.telefon)}</p>` : ''}
@@ -53,8 +53,8 @@ export const sendKontaktskjema = createServerFn({ method: 'POST' })
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        sender: { name: 'Sykosofi Kontaktskjema', email: 'noreply@sykosofi.no' },
-        to: [{ email: toEmail, name: 'Sykosofi' }],
+        sender: { name: 'Filosamtale Kontaktskjema', email: 'noreply@filosamtale.no' },
+        to: [{ email: toEmail, name: 'Filosamtale' }],
         replyTo: { email: data.epost, name: data.navn },
         subject: `Ny henvendelse fra ${data.navn}`,
         htmlContent: html,

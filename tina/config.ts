@@ -1,7 +1,7 @@
 import { defineConfig } from 'tinacms'
 
 /**
- * Sykosofi — TinaCMS configuration
+ * Filosamtale — TinaCMS configuration
  *
  * Allows the site owner to edit content, post new blogs and events
  * through the TinaCMS visual editor.

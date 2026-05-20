@@ -70,8 +70,8 @@ export default function Footer() {
                 </svg>
                 <div>
                   <p className="font-medium text-[var(--sea-ink)]">E-post</p>
-                  <a href="mailto:hei@sykosofi.no" className="hover:text-[var(--lagoon-deep)]">
-                    hei@sykosofi.no
+                  <a href="mailto:hei@filosamtale.no" className="hover:text-[var(--lagoon-deep)]">
+                    hei@filosamtale.no
                   </a>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function Footer() {
         <div className="mt-16 border-t border-[var(--line)] pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
             <div className="flex items-center gap-2">
-              <span className="font-serif text-lg font-semibold text-[var(--sea-ink)]">Sykosofi</span>
+              <span className="font-serif text-lg font-semibold text-[var(--sea-ink)]">Filosamtale</span>
               <span className="text-[var(--sea-ink-soft)]">—</span>
               <span className="text-sm text-[var(--sea-ink-soft)]">Fevik, Agder</span>
             </div>
@@ -185,7 +185,7 @@ export default function Footer() {
               <Link to="/arrangementer" className="hover:text-[var(--sea-ink)]">Arrangementer</Link>
             </nav>
             <p className="text-sm text-[var(--sea-ink-soft)]">
-              &copy; {year} Sykosofi. Alle rettigheter forbeholdt.
+              &copy; {year} Spilling Web. Alle rettigheter forbeholdt.
             </p>
           </div>
         </div>

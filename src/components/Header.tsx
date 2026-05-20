@@ -36,7 +36,7 @@ export default function Header() {
               />
               <circle cx="10" cy="10" r="2" fill="var(--lagoon)" />
             </svg>
-            <span className="font-serif font-semibold">Sykosofi</span>
+            <span className="font-serif font-semibold">Filosamtale</span>
           </Link>
         </h1>
 

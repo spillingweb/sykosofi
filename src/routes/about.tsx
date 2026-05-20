@@ -42,7 +42,7 @@ function OmMeg() {
           Anne Linn Haugen
         </h1>
         <p className="mb-4 text-lg text-[var(--sea-ink-soft)]">
-          Sykepleier · Filosof · Grunnlegger av Sykosofi
+          Sykepleier · Filosof · Grunnlegger av Filosamtale
         </p>
         <p className="max-w-2xl text-[var(--sea-ink-soft)] leading-relaxed">
           Jeg er bosatt i Fevik i Aust-Agder, og har jobbet med filosofisk praksis siden 2016.
@@ -82,7 +82,7 @@ function OmMeg() {
               <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" className="text-[var(--lagoon)]">
                 <path d="M2 3a1 1 0 011-1h10a1 1 0 011 1v1H2V3zm0 2h12v8a1 1 0 01-1 1H3a1 1 0 01-1-1V5z" />
               </svg>
-              hei@sykosofi.no
+              hei@filosamtale.no
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ function OmMeg() {
               <p>
                 Jeg begynte å studere filosofi ved siden av jobben, og tok etter hvert en
                 mastergrad ved Universitetet i Oslo med fokus på eksistensfilosofi og fenomenologi.
-                I 2016 etablerte jeg Sykosofi som en selvstendig praksis i Fevik.
+                I 2016 etablerte jeg Filosamtale som en selvstendig praksis i Fevik.
               </p>
               <p>
                 I dag tilbyr jeg filosofisk dialog og veiledning til privatpersoner, grupper og

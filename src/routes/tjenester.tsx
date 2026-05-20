@@ -214,7 +214,7 @@ function Tjenester() {
             },
             {
               q: 'Hvordan er det å booke en time?',
-              a: 'Fyll ut kontaktskjemaet nedenfor, eller send en e-post til hei@sykosofi.no. Jeg svarer innen to virkedager og vi finner en tid som passer.',
+              a: 'Fyll ut kontaktskjemaet nedenfor, eller send en e-post til hei@filosamtale.no. Jeg svarer innen to virkedager og vi finner en tid som passer.',
             },
           ].map(({ q, a }) => (
             <div key={q}>

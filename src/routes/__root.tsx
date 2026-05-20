@@ -13,14 +13,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Sykosofi — Filosofisk veiledning og dialog i Fevik' },
+      { title: 'Filosamtale — Filosofisk veiledning og dialog i Fevik' },
       {
         name: 'description',
         content:
-          'Sykosofi tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Anne Linn Haugen hjelper deg å utforske livets store spørsmål.',
+          'Filosamtale tilbyr filosofisk veiledning, samtalegrupper og seminarer i Fevik, Agder. Sykepleier og filosof Anne Linn Haugen hjelper deg å utforske livets store spørsmål.',
       },
       { name: 'keywords', content: 'filosofisk veiledning, samtalegruppe, seminar, Fevik, Agder, filosofi, sykepleier, eksistensiell samtale' },
-      { property: 'og:title', content: 'Sykosofi — Filosofisk veiledning og dialog' },
+      { property: 'og:title', content: 'Filosamtale — Filosofisk veiledning og dialog' },
       {
         property: 'og:description',
         content: 'Filosofisk veiledning, seminarer og samtalegrupper i Fevik og på nett. Utforsk livets spørsmål med en sykepleier og filosof.',

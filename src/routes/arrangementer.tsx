@@ -139,8 +139,8 @@ function Arrangementer() {
         <p className="max-w-xl text-[var(--sea-ink-soft)] leading-relaxed">
           Bli med på seminarer, samtalegrupper og kurs i Fevik og på nett. Meld deg på via
           kontaktskjemaet, eller send e-post til{' '}
-          <a href="mailto:hei@sykosofi.no" className="font-medium">
-            hei@sykosofi.no
+          <a href="mailto:hei@filosamtale.no" className="font-medium">
+            hei@filosamtale.no
           </a>
           .
         </p>
@@ -168,7 +168,7 @@ function Arrangementer() {
             </p>
           </div>
           <Button asChild className="shrink-0">
-            <a href="mailto:hei@sykosofi.no?subject=Varslinger om arrangementer">
+            <a href="mailto:hei@filosamtale.no?subject=Varslinger om arrangementer">
               Bli varslet
             </a>
           </Button>
