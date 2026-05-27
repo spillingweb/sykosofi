@@ -1,7 +1,29 @@
 ---
-title: Om meg
+_template: standard
+title: Tina Maria Lie
 subtitle: Sykepleier · Filosof · Grunnlegger av Filosamtale
 intro: Jeg er bosatt i Fevik i Aust-Agder og har jobbet med filosofisk praksis siden 2016. Min bakgrunn kombinerer klinisk sykepleiepraksis med akademisk filosofi — og det er nettopp denne kombinasjonen som preger min tilnærming til samtale og veiledning.
+profileImage: /uploads/profile.jpg
+contactName: Tina Marie Lie
+contactLocation: Fevik, Aust-Agder
+contactEmail: hei@filosamtale.no
+verdier:
+  - tittel: Nysgjerrighet
+    tekst: >-
+      Ekte filosofi begynner med vilje til å stille spørsmål ved det vi tar for
+      gitt — inkludert egne forestillinger.
+  - tittel: Respekt og trygghet
+    tekst: >-
+      Alle samtaler er konfidensielle. Det er ingen dumme spørsmål, og ingen
+      «riktig» måte å tenke på.
+  - tittel: Praktisk visdom
+    tekst: >-
+      Filosofi er ikke bare teori — det er et levd praksisfelt som gir konkrete
+      verktøy for et bedre liv.
+  - tittel: Helhetlig menneskesyn
+    tekst: >-
+      Som sykepleier og filosof ser jeg hele mennesket: kropp, sjel og de
+      spørsmålene vi bærer på.
 ---
 
 ## Min bakgrunn

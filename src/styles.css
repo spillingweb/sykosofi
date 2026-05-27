@@ -30,6 +30,20 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  
+  /* Brand colors */
+  --color-sea-ink-soft: var(--sea-ink-soft);
+  --color-lagoon-deep: var(--lagoon-deep);
+  --color-sand: var(--sand);
+  --color-foam: var(--foam);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-kicker: var(--kicker);
+  --color-chip-line: var(--chip-line);
+  --color-chip-bg: var(--chip-bg);
+  --color-link-bg-hover: var(--link-bg-hover);
+  --color-header-bg: var(--header-bg);
+  
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -344,4 +358,8 @@ a {
     transform: translateY(0);
   }
 }
+
+ * {
+    @apply border-border;
+  }
 

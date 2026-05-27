@@ -1,8 +1,8 @@
 ---
 title: 'Nettkurs: Stoisk filosofi i praksis'
 description: 'Fire ukentlige nettmøter der vi dykker inn i stoisk filosofi og omsetter den til praktiske verktøy for hverdagen. Passer for deg som ønsker mer ro, klarhet og motstandskraft. Alt materiale sendes på e-post.'
-date: 2025-08-04T00:00:00.000Z
-endDate: 2025-08-25T00:00:00.000Z
+date: 2026-08-04T00:00:00.000Z
+endDate: 2026-08-25T00:00:00.000Z
 time: '19:00–20:30'
 location: Nettmøte (Zoom)
 price: 800

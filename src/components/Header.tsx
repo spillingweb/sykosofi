@@ -15,13 +15,13 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-2 backdrop-blur-lg">
+    <header className="sticky top-0 z-50 border-b bg-header-bg px-2 backdrop-blur-lg">
       <nav className="page-wrap flex items-center gap-x-3 py-3 sm:py-4">
         {/* Logo / brand */}
         <h1 className="m-0 flex-shrink-0 text-base font-semibold tracking-tight">
           <Link
             to="/"
-            className="inline-flex items-center gap-2.5 md:rounded-full md:border border-[var(--chip-line)] md:bg-[var(--chip-bg)] py-1.5 text-sm text-[var(--sea-ink)] no-underline md:shadow-[0_6px_18px_rgba(45,80,70,0.10)] md:px-4 md:py-2"
+            className="inline-flex items-center gap-2.5 md:rounded-full md:border border-chip-line md:bg-chip-bg py-1.5 text-sm text-foreground no-underline md:shadow-[0_6px_18px_rgba(45,80,70,0.10)] md:px-4 md:py-2"
           >
             <svg
               viewBox="0 0 20 20"
@@ -65,7 +65,7 @@ export default function Header() {
           <Button
             asChild
             size="sm"
-            className="hidden rounded-full border-[var(--chip-line)] bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)] hover:border-[var(--chip-line)] hover:shadow-[0_8px_22px_rgba(47,106,74,0.16)] md:inline-flex"
+            className="hidden rounded-full border-chip-line bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)] hover:border-chip-line hover:shadow-[0_8px_22px_rgba(47,106,74,0.16)] md:inline-flex"
           >
             <Link to="/kontakt" className="no-underline">
               Ta kontakt
@@ -78,7 +78,7 @@ export default function Header() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
-            className="text-[var(--sea-ink)] transition hover:-translate-y-0.5 md:hidden"
+            className="text-foreground transition hover:-translate-y-0.5 md:hidden"
           >
             {mobileMenuOpen ? (
               <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,16 +103,16 @@ export default function Header() {
           />
           
           {/* Menu panel */}
-          <div className="fixed right-0 top-[60px] z-50 h-[calc(100vh-60px)] w-64 border-l border-[var(--line)] bg-[var(--surface-strong)] shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden">
+          <div className="fixed right-0 top-[60px] z-50 h-[calc(100vh-60px)] w-64 border-l bg-surface-strong shadow-[-8px_0_32px_rgba(47,72,54,0.12)] backdrop-blur-lg md:hidden">
             <nav className="flex flex-col gap-1 p-4">
               {navLinks.map(({ to, label }) => (
                 <Link
                   key={to}
                   to={to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="rounded-lg px-4 py-3 text-sm font-medium text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
+                  className="rounded-lg px-4 py-3 text-sm font-medium text-sea-ink-soft transition hover:bg-link-bg-hover hover:text-foreground"
                   activeProps={{
-                    className: 'rounded-lg px-4 py-3 text-sm font-medium bg-[var(--chip-bg)] text-[var(--sea-ink)] border border-[var(--chip-line)] shadow-[0_2px_8px_rgba(47,106,74,0.08)]'
+                    className: 'rounded-lg px-4 py-3 text-sm font-medium bg-chip-bg text-foreground border border-chip-line shadow-[0_2px_8px_rgba(47,106,74,0.08)]'
                   }}
                   activeOptions={to === '/' ? { exact: true } : undefined}
                 >
@@ -124,7 +124,7 @@ export default function Header() {
               <Button
                 asChild
                 size="sm"
-                className="mt-4 w-full rounded-full border-[var(--chip-line)] bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)]"
+                className="mt-4 w-full rounded-full border-chip-line bg-primary text-primary-foreground shadow-[0_6px_18px_rgba(47,106,74,0.12)]"
               >
                 <Link to="/kontakt" onClick={() => setMobileMenuOpen(false)} className="no-underline">
                   Ta kontakt

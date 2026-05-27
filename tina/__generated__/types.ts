@@ -235,7 +235,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Blogg | Arrangementer | Pages | Tjenester | Utdanning | Folder;
+export type DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Folder;
 
 export type Blogg = Node & Document & {
   __typename?: 'Blogg';
@@ -364,22 +364,176 @@ export type ArrangementerConnection = Connection & {
   edges?: Maybe<Array<Maybe<ArrangementerConnectionEdges>>>;
 };
 
-export type Pages = Node & Document & {
-  __typename?: 'Pages';
+export type PagesHomepage = Node & Document & {
+  __typename?: 'PagesHomepage';
   title: Scalars['String']['output'];
   subtitle?: Maybe<Scalars['String']['output']>;
-  intro?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
+  kicker?: Maybe<Scalars['String']['output']>;
+  heroImage?: Maybe<Scalars['String']['output']>;
+  stat1Value?: Maybe<Scalars['String']['output']>;
+  stat1Label?: Maybe<Scalars['String']['output']>;
+  stat2Value?: Maybe<Scalars['String']['output']>;
+  stat2Label?: Maybe<Scalars['String']['output']>;
+  stat3Value?: Maybe<Scalars['String']['output']>;
+  stat3Label?: Maybe<Scalars['String']['output']>;
+  profileImage?: Maybe<Scalars['String']['output']>;
+  aboutName?: Maybe<Scalars['String']['output']>;
+  aboutText1?: Maybe<Scalars['String']['output']>;
+  aboutText2?: Maybe<Scalars['String']['output']>;
+  quote?: Maybe<Scalars['String']['output']>;
+  quoteAuthor?: Maybe<Scalars['String']['output']>;
+  ctaTitle?: Maybe<Scalars['String']['output']>;
+  ctaDescription?: Maybe<Scalars['String']['output']>;
+  servicesHeading?: Maybe<Scalars['String']['output']>;
+  blogHeading?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type PagesFilter = {
+export type PagesStandardVerdier = {
+  __typename?: 'PagesStandardVerdier';
+  tittel: Scalars['String']['output'];
+  tekst: Scalars['String']['output'];
+};
+
+export type PagesStandard = Node & Document & {
+  __typename?: 'PagesStandard';
+  title: Scalars['String']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['String']['output']>;
+  profileImage?: Maybe<Scalars['String']['output']>;
+  body?: Maybe<Scalars['JSON']['output']>;
+  contactName?: Maybe<Scalars['String']['output']>;
+  contactLocation?: Maybe<Scalars['String']['output']>;
+  contactEmail?: Maybe<Scalars['String']['output']>;
+  verdier?: Maybe<Array<Maybe<PagesStandardVerdier>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type PagesHeader = Node & Document & {
+  __typename?: 'PagesHeader';
+  title: Scalars['String']['output'];
+  intro?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type PagesServicesFaq = {
+  __typename?: 'PagesServicesFaq';
+  question: Scalars['String']['output'];
+  answer: Scalars['String']['output'];
+};
+
+export type PagesServices = Node & Document & {
+  __typename?: 'PagesServices';
+  title: Scalars['String']['output'];
+  subtitle?: Maybe<Scalars['String']['output']>;
+  intro?: Maybe<Scalars['String']['output']>;
+  infoBadge?: Maybe<Scalars['String']['output']>;
+  faq?: Maybe<Array<Maybe<PagesServicesFaq>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type PagesKontakt = Node & Document & {
+  __typename?: 'PagesKontakt';
+  title: Scalars['String']['output'];
+  kicker?: Maybe<Scalars['String']['output']>;
+  heading: Scalars['String']['output'];
+  description: Scalars['String']['output'];
+  addressLine1?: Maybe<Scalars['String']['output']>;
+  addressLine2?: Maybe<Scalars['String']['output']>;
+  addressLine3?: Maybe<Scalars['String']['output']>;
+  email: Scalars['String']['output'];
+  phone: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt;
+
+export type PagesHomepageFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  kicker?: InputMaybe<StringFilter>;
+  heroImage?: InputMaybe<ImageFilter>;
+  stat1Value?: InputMaybe<StringFilter>;
+  stat1Label?: InputMaybe<StringFilter>;
+  stat2Value?: InputMaybe<StringFilter>;
+  stat2Label?: InputMaybe<StringFilter>;
+  stat3Value?: InputMaybe<StringFilter>;
+  stat3Label?: InputMaybe<StringFilter>;
+  profileImage?: InputMaybe<ImageFilter>;
+  aboutName?: InputMaybe<StringFilter>;
+  aboutText1?: InputMaybe<StringFilter>;
+  aboutText2?: InputMaybe<StringFilter>;
+  quote?: InputMaybe<StringFilter>;
+  quoteAuthor?: InputMaybe<StringFilter>;
+  ctaTitle?: InputMaybe<StringFilter>;
+  ctaDescription?: InputMaybe<StringFilter>;
+  servicesHeading?: InputMaybe<StringFilter>;
+  blogHeading?: InputMaybe<StringFilter>;
+};
+
+export type PagesStandardVerdierFilter = {
+  tittel?: InputMaybe<StringFilter>;
+  tekst?: InputMaybe<StringFilter>;
+};
+
+export type PagesStandardFilter = {
   title?: InputMaybe<StringFilter>;
   subtitle?: InputMaybe<StringFilter>;
   intro?: InputMaybe<StringFilter>;
+  profileImage?: InputMaybe<ImageFilter>;
   body?: InputMaybe<RichTextFilter>;
+  contactName?: InputMaybe<StringFilter>;
+  contactLocation?: InputMaybe<StringFilter>;
+  contactEmail?: InputMaybe<StringFilter>;
+  verdier?: InputMaybe<PagesStandardVerdierFilter>;
+};
+
+export type PagesHeaderFilter = {
+  title?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<StringFilter>;
+};
+
+export type PagesServicesFaqFilter = {
+  question?: InputMaybe<StringFilter>;
+  answer?: InputMaybe<StringFilter>;
+};
+
+export type PagesServicesFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  intro?: InputMaybe<StringFilter>;
+  infoBadge?: InputMaybe<StringFilter>;
+  faq?: InputMaybe<PagesServicesFaqFilter>;
+};
+
+export type PagesKontaktFilter = {
+  title?: InputMaybe<StringFilter>;
+  kicker?: InputMaybe<StringFilter>;
+  heading?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  addressLine1?: InputMaybe<StringFilter>;
+  addressLine2?: InputMaybe<StringFilter>;
+  addressLine3?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringFilter>;
+  phone?: InputMaybe<StringFilter>;
+};
+
+export type PagesFilter = {
+  homepage?: InputMaybe<PagesHomepageFilter>;
+  standard?: InputMaybe<PagesStandardFilter>;
+  header?: InputMaybe<PagesHeaderFilter>;
+  services?: InputMaybe<PagesServicesFilter>;
+  kontakt?: InputMaybe<PagesKontaktFilter>;
 };
 
 export type PagesConnectionEdges = {
@@ -626,11 +780,82 @@ export type ArrangementerMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type PagesMutation = {
+export type PagesHomepageMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  kicker?: InputMaybe<Scalars['String']['input']>;
+  heroImage?: InputMaybe<Scalars['String']['input']>;
+  stat1Value?: InputMaybe<Scalars['String']['input']>;
+  stat1Label?: InputMaybe<Scalars['String']['input']>;
+  stat2Value?: InputMaybe<Scalars['String']['input']>;
+  stat2Label?: InputMaybe<Scalars['String']['input']>;
+  stat3Value?: InputMaybe<Scalars['String']['input']>;
+  stat3Label?: InputMaybe<Scalars['String']['input']>;
+  profileImage?: InputMaybe<Scalars['String']['input']>;
+  aboutName?: InputMaybe<Scalars['String']['input']>;
+  aboutText1?: InputMaybe<Scalars['String']['input']>;
+  aboutText2?: InputMaybe<Scalars['String']['input']>;
+  quote?: InputMaybe<Scalars['String']['input']>;
+  quoteAuthor?: InputMaybe<Scalars['String']['input']>;
+  ctaTitle?: InputMaybe<Scalars['String']['input']>;
+  ctaDescription?: InputMaybe<Scalars['String']['input']>;
+  servicesHeading?: InputMaybe<Scalars['String']['input']>;
+  blogHeading?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesStandardVerdierMutation = {
+  tittel?: InputMaybe<Scalars['String']['input']>;
+  tekst?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesStandardMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   intro?: InputMaybe<Scalars['String']['input']>;
+  profileImage?: InputMaybe<Scalars['String']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
+  contactName?: InputMaybe<Scalars['String']['input']>;
+  contactLocation?: InputMaybe<Scalars['String']['input']>;
+  contactEmail?: InputMaybe<Scalars['String']['input']>;
+  verdier?: InputMaybe<Array<InputMaybe<PagesStandardVerdierMutation>>>;
+};
+
+export type PagesHeaderMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesServicesFaqMutation = {
+  question?: InputMaybe<Scalars['String']['input']>;
+  answer?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesServicesMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  intro?: InputMaybe<Scalars['String']['input']>;
+  infoBadge?: InputMaybe<Scalars['String']['input']>;
+  faq?: InputMaybe<Array<InputMaybe<PagesServicesFaqMutation>>>;
+};
+
+export type PagesKontaktMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  kicker?: InputMaybe<Scalars['String']['input']>;
+  heading?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  addressLine1?: InputMaybe<Scalars['String']['input']>;
+  addressLine2?: InputMaybe<Scalars['String']['input']>;
+  addressLine3?: InputMaybe<Scalars['String']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  phone?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesMutation = {
+  homepage?: InputMaybe<PagesHomepageMutation>;
+  standard?: InputMaybe<PagesStandardMutation>;
+  header?: InputMaybe<PagesHeaderMutation>;
+  services?: InputMaybe<PagesServicesMutation>;
+  kontakt?: InputMaybe<PagesKontaktMutation>;
 };
 
 export type TjenesterPriserMutation = {
@@ -658,7 +883,17 @@ export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: 
 
 export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: string, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null };
 
-export type PagesPartsFragment = { __typename: 'Pages', title: string, subtitle?: string | null, intro?: string | null, body?: any | null };
+type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null };
+
+type PagesParts_PagesStandard_Fragment = { __typename: 'PagesStandard', title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null };
+
+type PagesParts_PagesHeader_Fragment = { __typename: 'PagesHeader', title: string, intro?: string | null };
+
+type PagesParts_PagesServices_Fragment = { __typename: 'PagesServices', title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null };
+
+type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string };
+
+export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
 
 export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, beskrivelse: string, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
 
@@ -707,7 +942,7 @@ export type PagesQueryVariables = Exact<{
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, title: string, subtitle?: string | null, intro?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PagesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -719,7 +954,7 @@ export type PagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title: string, subtitle?: string | null, intro?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'PagesHomepage', id: string, title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesStandard', id: string, title: string, subtitle?: string | null, intro?: string | null, profileImage?: string | null, body?: any | null, contactName?: string | null, contactLocation?: string | null, contactEmail?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, verdier?: Array<{ __typename: 'PagesStandardVerdier', tittel: string, tekst: string } | null> | null } | { __typename: 'PagesHeader', id: string, title: string, intro?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | { __typename: 'PagesServices', id: string, title: string, subtitle?: string | null, intro?: string | null, infoBadge?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'PagesServicesFaq', question: string, answer: string } | null> | null } | { __typename: 'PagesKontakt', id: string, title: string, kicker?: string | null, heading: string, description: string, addressLine1?: string | null, addressLine2?: string | null, addressLine3?: string | null, email: string, phone: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type TjenesterQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -791,10 +1026,69 @@ export const ArrangementerPartsFragmentDoc = gql`
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   __typename
-  title
-  subtitle
-  intro
-  body
+  ... on PagesHomepage {
+    title
+    subtitle
+    kicker
+    heroImage
+    stat1Value
+    stat1Label
+    stat2Value
+    stat2Label
+    stat3Value
+    stat3Label
+    profileImage
+    aboutName
+    aboutText1
+    aboutText2
+    quote
+    quoteAuthor
+    ctaTitle
+    ctaDescription
+    servicesHeading
+    blogHeading
+  }
+  ... on PagesStandard {
+    title
+    subtitle
+    intro
+    profileImage
+    body
+    contactName
+    contactLocation
+    contactEmail
+    verdier {
+      __typename
+      tittel
+      tekst
+    }
+  }
+  ... on PagesHeader {
+    title
+    intro
+  }
+  ... on PagesServices {
+    title
+    subtitle
+    intro
+    infoBadge
+    faq {
+      __typename
+      question
+      answer
+    }
+  }
+  ... on PagesKontakt {
+    title
+    kicker
+    heading
+    description
+    addressLine1
+    addressLine2
+    addressLine3
+    email
+    phone
+  }
 }
     `;
 export const TjenesterPartsFragmentDoc = gql`

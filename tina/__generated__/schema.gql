@@ -97,7 +97,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Blogg | Arrangementer | Pages | Tjenester | Utdanning | Folder
+union DocumentNode = Blogg | Arrangementer | PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt | Tjenester | Utdanning | Folder
 
 type Blogg implements Node & Document {
   title: String!
@@ -220,21 +220,169 @@ type ArrangementerConnection implements Connection {
   edges: [ArrangementerConnectionEdges]
 }
 
-type Pages implements Node & Document {
+type PagesHomepage implements Node & Document {
   title: String!
   subtitle: String
-  intro: String
-  body: JSON
+  kicker: String
+  heroImage: String
+  stat1Value: String
+  stat1Label: String
+  stat2Value: String
+  stat2Label: String
+  stat3Value: String
+  stat3Label: String
+  profileImage: String
+  aboutName: String
+  aboutText1: String
+  aboutText2: String
+  quote: String
+  quoteAuthor: String
+  ctaTitle: String
+  ctaDescription: String
+  servicesHeading: String
+  blogHeading: String
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input PagesFilter {
+type PagesStandardVerdier {
+  tittel: String!
+  tekst: String!
+}
+
+type PagesStandard implements Node & Document {
+  title: String!
+  subtitle: String
+  intro: String
+  profileImage: String
+  body: JSON
+  contactName: String
+  contactLocation: String
+  contactEmail: String
+  verdier: [PagesStandardVerdier]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type PagesHeader implements Node & Document {
+  title: String!
+  intro: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type PagesServicesFaq {
+  question: String!
+  answer: String!
+}
+
+type PagesServices implements Node & Document {
+  title: String!
+  subtitle: String
+  intro: String
+  infoBadge: String
+  faq: [PagesServicesFaq]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+type PagesKontakt implements Node & Document {
+  title: String!
+  kicker: String
+  heading: String!
+  description: String!
+  addressLine1: String
+  addressLine2: String
+  addressLine3: String
+  email: String!
+  phone: String!
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+union Pages = PagesHomepage | PagesStandard | PagesHeader | PagesServices | PagesKontakt
+
+input PagesHomepageFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  kicker: StringFilter
+  heroImage: ImageFilter
+  stat1Value: StringFilter
+  stat1Label: StringFilter
+  stat2Value: StringFilter
+  stat2Label: StringFilter
+  stat3Value: StringFilter
+  stat3Label: StringFilter
+  profileImage: ImageFilter
+  aboutName: StringFilter
+  aboutText1: StringFilter
+  aboutText2: StringFilter
+  quote: StringFilter
+  quoteAuthor: StringFilter
+  ctaTitle: StringFilter
+  ctaDescription: StringFilter
+  servicesHeading: StringFilter
+  blogHeading: StringFilter
+}
+
+input PagesStandardVerdierFilter {
+  tittel: StringFilter
+  tekst: StringFilter
+}
+
+input PagesStandardFilter {
   title: StringFilter
   subtitle: StringFilter
   intro: StringFilter
+  profileImage: ImageFilter
   body: RichTextFilter
+  contactName: StringFilter
+  contactLocation: StringFilter
+  contactEmail: StringFilter
+  verdier: PagesStandardVerdierFilter
+}
+
+input PagesHeaderFilter {
+  title: StringFilter
+  intro: StringFilter
+}
+
+input PagesServicesFaqFilter {
+  question: StringFilter
+  answer: StringFilter
+}
+
+input PagesServicesFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  intro: StringFilter
+  infoBadge: StringFilter
+  faq: PagesServicesFaqFilter
+}
+
+input PagesKontaktFilter {
+  title: StringFilter
+  kicker: StringFilter
+  heading: StringFilter
+  description: StringFilter
+  addressLine1: StringFilter
+  addressLine2: StringFilter
+  addressLine3: StringFilter
+  email: StringFilter
+  phone: StringFilter
+}
+
+input PagesFilter {
+  homepage: PagesHomepageFilter
+  standard: PagesStandardFilter
+  header: PagesHeaderFilter
+  services: PagesServicesFilter
+  kontakt: PagesKontaktFilter
 }
 
 type PagesConnectionEdges {
@@ -378,11 +526,82 @@ input ArrangementerMutation {
   body: JSON
 }
 
-input PagesMutation {
+input PagesHomepageMutation {
+  title: String
+  subtitle: String
+  kicker: String
+  heroImage: String
+  stat1Value: String
+  stat1Label: String
+  stat2Value: String
+  stat2Label: String
+  stat3Value: String
+  stat3Label: String
+  profileImage: String
+  aboutName: String
+  aboutText1: String
+  aboutText2: String
+  quote: String
+  quoteAuthor: String
+  ctaTitle: String
+  ctaDescription: String
+  servicesHeading: String
+  blogHeading: String
+}
+
+input PagesStandardVerdierMutation {
+  tittel: String
+  tekst: String
+}
+
+input PagesStandardMutation {
   title: String
   subtitle: String
   intro: String
+  profileImage: String
   body: JSON
+  contactName: String
+  contactLocation: String
+  contactEmail: String
+  verdier: [PagesStandardVerdierMutation]
+}
+
+input PagesHeaderMutation {
+  title: String
+  intro: String
+}
+
+input PagesServicesFaqMutation {
+  question: String
+  answer: String
+}
+
+input PagesServicesMutation {
+  title: String
+  subtitle: String
+  intro: String
+  infoBadge: String
+  faq: [PagesServicesFaqMutation]
+}
+
+input PagesKontaktMutation {
+  title: String
+  kicker: String
+  heading: String
+  description: String
+  addressLine1: String
+  addressLine2: String
+  addressLine3: String
+  email: String
+  phone: String
+}
+
+input PagesMutation {
+  homepage: PagesHomepageMutation
+  standard: PagesStandardMutation
+  header: PagesHeaderMutation
+  services: PagesServicesMutation
+  kontakt: PagesKontaktMutation
 }
 
 input TjenesterPriserMutation {

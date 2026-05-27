@@ -26,6 +26,11 @@ var config_default = defineConfig({
           filename: {
             readonly: false,
             slugify: (values) => values?.["title"] ? values["title"].toLowerCase().replace(/æ/g, "ae").replace(/ø/g, "o").replace(/å/g, "a").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") : "innlegg"
+          },
+          router: ({ document }) => {
+            if (document._sys.filename == "Hello-World") {
+              return "/";
+            }
           }
         },
         fields: [
@@ -53,7 +58,14 @@ var config_default = defineConfig({
             type: "string",
             name: "category",
             label: "Kategori",
-            options: ["Filosofi", "Refleksjon", "Filosofihistorie", "Etikk", "Helse", "Annet"]
+            options: [
+              "Filosofi",
+              "Refleksjon",
+              "Filosofihistorie",
+              "Etikk",
+              "Helse",
+              "Annet"
+            ]
           },
           {
             type: "number",
@@ -164,7 +176,7 @@ var config_default = defineConfig({
           }
         ]
       },
-      /* ── PAGES (om meg, tjenester) ────────────────────────── */
+      /* ── PAGES (om meg, tjenester, forside) ────────────────────────── */
       {
         name: "pages",
         label: "Statiske sider",
@@ -175,30 +187,329 @@ var config_default = defineConfig({
             readonly: true
           }
         },
-        fields: [
+        templates: [
           {
-            type: "string",
-            name: "title",
-            label: "Sidetittel",
-            isTitle: true,
-            required: true
+            name: "homepage",
+            label: "Forside",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst (liten tekst over tittel)"
+              },
+              {
+                type: "image",
+                name: "heroImage",
+                label: "Hovedbilde (hero)"
+              },
+              {
+                type: "string",
+                name: "stat1Value",
+                label: "Statistikk 1: Verdi"
+              },
+              {
+                type: "string",
+                name: "stat1Label",
+                label: "Statistikk 1: Etikett"
+              },
+              {
+                type: "string",
+                name: "stat2Value",
+                label: "Statistikk 2: Verdi"
+              },
+              {
+                type: "string",
+                name: "stat2Label",
+                label: "Statistikk 2: Etikett"
+              },
+              {
+                type: "string",
+                name: "stat3Value",
+                label: "Statistikk 3: Verdi"
+              },
+              {
+                type: "string",
+                name: "stat3Label",
+                label: "Statistikk 3: Etikett"
+              },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde (Om meg-seksjon)"
+              },
+              {
+                type: "string",
+                name: "aboutName",
+                label: "Om meg: Navn"
+              },
+              {
+                type: "string",
+                name: "aboutText1",
+                label: "Om meg: Avsnitt 1",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "aboutText2",
+                label: "Om meg: Avsnitt 2",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "quote",
+                label: "Sitat",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "quoteAuthor",
+                label: "Sitatforfatter"
+              },
+              {
+                type: "string",
+                name: "ctaTitle",
+                label: "Call-to-action tittel"
+              },
+              {
+                type: "string",
+                name: "ctaDescription",
+                label: "Call-to-action beskrivelse",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "servicesHeading",
+                label: "Tjenester-seksjon: Overskrift"
+              },
+              {
+                type: "string",
+                name: "blogHeading",
+                label: "Blogg-seksjon: Overskrift"
+              }
+            ]
           },
           {
-            type: "string",
-            name: "subtitle",
-            label: "Undertittel"
+            name: "standard",
+            label: "Standard side",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde"
+              },
+              {
+                type: "rich-text",
+                name: "body",
+                label: "Innhold",
+                isBody: true
+              },
+              {
+                type: "string",
+                name: "contactName",
+                label: "Kontaktinfo: Navn"
+              },
+              {
+                type: "string",
+                name: "contactLocation",
+                label: "Kontaktinfo: Sted"
+              },
+              {
+                type: "string",
+                name: "contactEmail",
+                label: "Kontaktinfo: E-post"
+              },
+              {
+                type: "object",
+                name: "verdier",
+                label: "Verdier",
+                list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item?.tittel || "Ny verdi" };
+                  }
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "tittel",
+                    label: "Tittel",
+                    required: true
+                  },
+                  {
+                    type: "string",
+                    name: "tekst",
+                    label: "Beskrivelse",
+                    ui: { component: "textarea" },
+                    required: true
+                  }
+                ]
+              }
+            ]
           },
           {
-            type: "string",
-            name: "intro",
-            label: "Introtekst",
-            ui: { component: "textarea" }
+            name: "header",
+            label: "Side med kun header",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" }
+              }
+            ]
           },
           {
-            type: "rich-text",
-            name: "body",
-            label: "Innhold",
-            isBody: true
+            name: "services",
+            label: "Tjenester-side",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel"
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" }
+              },
+              {
+                type: "string",
+                name: "infoBadge",
+                label: "Informasjonsbadge tekst",
+                description: "Tekst som vises i infoboksen \xF8verst p\xE5 siden"
+              },
+              {
+                type: "object",
+                name: "faq",
+                label: "Vanlige sp\xF8rsm\xE5l",
+                list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item?.question || "Nytt sp\xF8rsm\xE5l" };
+                  }
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "question",
+                    label: "Sp\xF8rsm\xE5l",
+                    required: true
+                  },
+                  {
+                    type: "string",
+                    name: "answer",
+                    label: "Svar",
+                    ui: { component: "textarea" },
+                    required: true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: "kontakt",
+            label: "Kontaktinformasjon",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst"
+              },
+              {
+                type: "string",
+                name: "heading",
+                label: "Overskrift",
+                required: true
+              },
+              {
+                type: "string",
+                name: "description",
+                label: "Beskrivelse",
+                ui: { component: "textarea" },
+                required: true
+              },
+              {
+                type: "string",
+                name: "addressLine1",
+                label: "Adresse linje 1"
+              },
+              {
+                type: "string",
+                name: "addressLine2",
+                label: "Adresse linje 2"
+              },
+              {
+                type: "string",
+                name: "addressLine3",
+                label: "Adresse linje 3"
+              },
+              {
+                type: "string",
+                name: "email",
+                label: "E-postadresse",
+                required: true
+              },
+              {
+                type: "string",
+                name: "phone",
+                label: "Telefonnummer",
+                required: true
+              }
+            ]
           }
         ]
       },

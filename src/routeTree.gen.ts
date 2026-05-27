@@ -15,7 +15,9 @@ import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as ArrangementerRouteImport } from './routes/arrangementer'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BloggIndexRouteImport } from './routes/blogg/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as BloggSlugRouteImport } from './routes/blogg/$slug'
+import { Route as AdminSplatRouteImport } from './routes/admin/$'
 
 const TjenesterRoute = TjenesterRouteImport.update({
   id: '/tjenester',
@@ -47,9 +49,19 @@ const BloggIndexRoute = BloggIndexRouteImport.update({
   path: '/blogg/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BloggSlugRoute = BloggSlugRouteImport.update({
   id: '/blogg/$slug',
   path: '/blogg/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSplatRoute = AdminSplatRouteImport.update({
+  id: '/admin/$',
+  path: '/admin/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -59,7 +71,9 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/om-meg': typeof OmMegRoute
   '/tjenester': typeof TjenesterRoute
+  '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/blogg/': typeof BloggIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +82,9 @@ export interface FileRoutesByTo {
   '/kontakt': typeof KontaktRoute
   '/om-meg': typeof OmMegRoute
   '/tjenester': typeof TjenesterRoute
+  '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/blogg': typeof BloggIndexRoute
 }
 export interface FileRoutesById {
@@ -78,7 +94,9 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/om-meg': typeof OmMegRoute
   '/tjenester': typeof TjenesterRoute
+  '/admin/$': typeof AdminSplatRoute
   '/blogg/$slug': typeof BloggSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/blogg/': typeof BloggIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +107,9 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/om-meg'
     | '/tjenester'
+    | '/admin/$'
     | '/blogg/$slug'
+    | '/admin/'
     | '/blogg/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +118,9 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/om-meg'
     | '/tjenester'
+    | '/admin/$'
     | '/blogg/$slug'
+    | '/admin'
     | '/blogg'
   id:
     | '__root__'
@@ -107,7 +129,9 @@ export interface FileRouteTypes {
     | '/kontakt'
     | '/om-meg'
     | '/tjenester'
+    | '/admin/$'
     | '/blogg/$slug'
+    | '/admin/'
     | '/blogg/'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +141,9 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   OmMegRoute: typeof OmMegRoute
   TjenesterRoute: typeof TjenesterRoute
+  AdminSplatRoute: typeof AdminSplatRoute
   BloggSlugRoute: typeof BloggSlugRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   BloggIndexRoute: typeof BloggIndexRoute
 }
 
@@ -165,11 +191,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BloggIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blogg/$slug': {
       id: '/blogg/$slug'
       path: '/blogg/$slug'
       fullPath: '/blogg/$slug'
       preLoaderRoute: typeof BloggSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/$': {
+      id: '/admin/$'
+      path: '/admin/$'
+      fullPath: '/admin/$'
+      preLoaderRoute: typeof AdminSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -181,7 +221,9 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   OmMegRoute: OmMegRoute,
   TjenesterRoute: TjenesterRoute,
+  AdminSplatRoute: AdminSplatRoute,
   BloggSlugRoute: BloggSlugRoute,
+  AdminIndexRoute: AdminIndexRoute,
   BloggIndexRoute: BloggIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -27,10 +27,69 @@ fragment ArrangementerParts on Arrangementer {
 
 fragment PagesParts on Pages {
   __typename
-  title
-  subtitle
-  intro
-  body
+  ... on PagesHomepage {
+    title
+    subtitle
+    kicker
+    heroImage
+    stat1Value
+    stat1Label
+    stat2Value
+    stat2Label
+    stat3Value
+    stat3Label
+    profileImage
+    aboutName
+    aboutText1
+    aboutText2
+    quote
+    quoteAuthor
+    ctaTitle
+    ctaDescription
+    servicesHeading
+    blogHeading
+  }
+  ... on PagesStandard {
+    title
+    subtitle
+    intro
+    profileImage
+    body
+    contactName
+    contactLocation
+    contactEmail
+    verdier {
+      __typename
+      tittel
+      tekst
+    }
+  }
+  ... on PagesHeader {
+    title
+    intro
+  }
+  ... on PagesServices {
+    title
+    subtitle
+    intro
+    infoBadge
+    faq {
+      __typename
+      question
+      answer
+    }
+  }
+  ... on PagesKontakt {
+    title
+    kicker
+    heading
+    description
+    addressLine1
+    addressLine2
+    addressLine3
+    email
+    phone
+  }
 }
 
 fragment TjenesterParts on Tjenester {

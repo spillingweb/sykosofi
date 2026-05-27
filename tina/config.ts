@@ -1,4 +1,4 @@
-import { defineConfig } from 'tinacms'
+import { defineConfig } from "tinacms";
 
 /**
  * Filosamtale — TinaCMS configuration
@@ -15,19 +15,21 @@ import { defineConfig } from 'tinacms'
  */
 export default defineConfig({
   branch:
-    process.env['GITHUB_BRANCH'] ?? process.env['VERCEL_GIT_COMMIT_REF'] ?? 'main',
-  clientId: process.env['TINA_PUBLIC_CLIENT_ID'] ?? null,
-  token: process.env['TINA_TOKEN'] ?? null,
+    process.env["GITHUB_BRANCH"] ??
+    process.env["VERCEL_GIT_COMMIT_REF"] ??
+    "main",
+  clientId: process.env["TINA_PUBLIC_CLIENT_ID"] ?? null,
+  token: process.env["TINA_TOKEN"] ?? null,
 
   build: {
-    outputFolder: 'admin',
-    publicFolder: 'public',
+    outputFolder: "admin",
+    publicFolder: "public",
   },
 
   media: {
     tina: {
-      mediaRoot: 'uploads',
-      publicFolder: 'public',
+      mediaRoot: "uploads",
+      publicFolder: "public",
     },
   },
 
@@ -35,66 +37,78 @@ export default defineConfig({
     collections: [
       /* ── BLOG POSTS ─────────────────────────────────────── */
       {
-        name: 'blogg',
-        label: 'Blogginnlegg',
-        path: 'content/blogg',
-        format: 'md',
+        name: "blogg",
+        label: "Blogginnlegg",
+        path: "content/blogg",
+        format: "md",
         ui: {
           filename: {
             readonly: false,
             slugify: (values) =>
-              values?.['title']
-                ? (values['title'] as string)
+              values?.["title"]
+                ? (values["title"] as string)
                     .toLowerCase()
-                    .replace(/æ/g, 'ae')
-                    .replace(/ø/g, 'o')
-                    .replace(/å/g, 'a')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-|-$/g, '')
-                : 'innlegg',
+                    .replace(/æ/g, "ae")
+                    .replace(/ø/g, "o")
+                    .replace(/å/g, "a")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                : "innlegg",
+          },
+          router: ({ document }) => {
+            if (document._sys.filename == "Hello-World") {
+              return "/";
+            }
           },
         },
         fields: [
           {
-            type: 'string',
-            name: 'title',
-            label: 'Tittel',
+            type: "string",
+            name: "title",
+            label: "Tittel",
             isTitle: true,
             required: true,
           },
           {
-            type: 'string',
-            name: 'excerpt',
-            label: 'Ingress / sammendrag',
-            ui: { component: 'textarea' },
+            type: "string",
+            name: "excerpt",
+            label: "Ingress / sammendrag",
+            ui: { component: "textarea" },
             required: true,
           },
           {
-            type: 'datetime',
-            name: 'date',
-            label: 'Publiseringsdato',
+            type: "datetime",
+            name: "date",
+            label: "Publiseringsdato",
             required: true,
           },
           {
-            type: 'string',
-            name: 'category',
-            label: 'Kategori',
-            options: ['Filosofi', 'Refleksjon', 'Filosofihistorie', 'Etikk', 'Helse', 'Annet'],
+            type: "string",
+            name: "category",
+            label: "Kategori",
+            options: [
+              "Filosofi",
+              "Refleksjon",
+              "Filosofihistorie",
+              "Etikk",
+              "Helse",
+              "Annet",
+            ],
           },
           {
-            type: 'number',
-            name: 'readingTime',
-            label: 'Lesetid (minutter)',
+            type: "number",
+            name: "readingTime",
+            label: "Lesetid (minutter)",
           },
           {
-            type: 'image',
-            name: 'coverImage',
-            label: 'Forsidebilde',
+            type: "image",
+            name: "coverImage",
+            label: "Forsidebilde",
           },
           {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Innhold',
+            type: "rich-text",
+            name: "body",
+            label: "Innhold",
             isBody: true,
           },
         ],
@@ -102,270 +116,569 @@ export default defineConfig({
 
       /* ── EVENTS ──────────────────────────────────────────── */
       {
-        name: 'arrangementer',
-        label: 'Arrangementer',
-        path: 'content/arrangementer',
-        format: 'md',
+        name: "arrangementer",
+        label: "Arrangementer",
+        path: "content/arrangementer",
+        format: "md",
         ui: {
           filename: {
             readonly: false,
             slugify: (values) =>
-              values?.['title']
-                ? (values['title'] as string)
+              values?.["title"]
+                ? (values["title"] as string)
                     .toLowerCase()
-                    .replace(/æ/g, 'ae')
-                    .replace(/ø/g, 'o')
-                    .replace(/å/g, 'a')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-|-$/g, '')
-                : 'arrangement',
+                    .replace(/æ/g, "ae")
+                    .replace(/ø/g, "o")
+                    .replace(/å/g, "a")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                : "arrangement",
           },
         },
         fields: [
           {
-            type: 'string',
-            name: 'title',
-            label: 'Tittel',
+            type: "string",
+            name: "title",
+            label: "Tittel",
             isTitle: true,
             required: true,
           },
           {
-            type: 'string',
-            name: 'description',
-            label: 'Beskrivelse',
-            ui: { component: 'textarea' },
+            type: "string",
+            name: "description",
+            label: "Beskrivelse",
+            ui: { component: "textarea" },
             required: true,
           },
           {
-            type: 'datetime',
-            name: 'date',
-            label: 'Dato',
+            type: "datetime",
+            name: "date",
+            label: "Dato",
             required: true,
           },
           {
-            type: 'datetime',
-            name: 'endDate',
-            label: 'Sluttdato (valgfritt, for flerdagskurs)',
+            type: "datetime",
+            name: "endDate",
+            label: "Sluttdato (valgfritt, for flerdagskurs)",
           },
           {
-            type: 'string',
-            name: 'time',
-            label: 'Tidspunkt (f.eks. 18:00–20:00)',
+            type: "string",
+            name: "time",
+            label: "Tidspunkt (f.eks. 18:00–20:00)",
             required: true,
           },
           {
-            type: 'string',
-            name: 'location',
-            label: 'Sted',
+            type: "string",
+            name: "location",
+            label: "Sted",
             required: true,
           },
           {
-            type: 'number',
-            name: 'price',
-            label: 'Pris (kr, 0 = gratis)',
+            type: "number",
+            name: "price",
+            label: "Pris (kr, 0 = gratis)",
             required: true,
           },
           {
-            type: 'number',
-            name: 'capacity',
-            label: 'Maks antall deltakere',
+            type: "number",
+            name: "capacity",
+            label: "Maks antall deltakere",
           },
           {
-            type: 'string',
-            name: 'category',
-            label: 'Kategori',
+            type: "string",
+            name: "category",
+            label: "Kategori",
             options: [
-              { value: 'seminar', label: 'Seminar' },
-              { value: 'gruppe', label: 'Samtalegruppe' },
-              { value: 'kurs', label: 'Kurs' },
-              { value: 'dialog', label: 'Dialog' },
+              { value: "seminar", label: "Seminar" },
+              { value: "gruppe", label: "Samtalegruppe" },
+              { value: "kurs", label: "Kurs" },
+              { value: "dialog", label: "Dialog" },
             ],
             required: true,
           },
           {
-            type: 'boolean',
-            name: 'isOnline',
-            label: 'Nettbasert arrangement?',
+            type: "boolean",
+            name: "isOnline",
+            label: "Nettbasert arrangement?",
           },
           {
-            type: 'string',
-            name: 'registrationUrl',
-            label: 'Påmeldingslenke (valgfritt)',
+            type: "string",
+            name: "registrationUrl",
+            label: "Påmeldingslenke (valgfritt)",
           },
           {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Utfyllende informasjon',
+            type: "rich-text",
+            name: "body",
+            label: "Utfyllende informasjon",
             isBody: true,
           },
         ],
       },
 
-      /* ── PAGES (om meg, tjenester) ────────────────────────── */
+      /* ── PAGES (om meg, tjenester, forside) ────────────────────────── */
       {
-        name: 'pages',
-        label: 'Statiske sider',
-        path: 'content/pages',
-        format: 'md',
+        name: "pages",
+        label: "Statiske sider",
+        path: "content/pages",
+        format: "md",
         ui: {
           filename: {
             readonly: true,
           },
         },
-        fields: [
+        templates: [
           {
-            type: 'string',
-            name: 'title',
-            label: 'Sidetittel',
-            isTitle: true,
-            required: true,
+            name: "homepage",
+            label: "Forside",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst (liten tekst over tittel)",
+              },
+              {
+                type: "image",
+                name: "heroImage",
+                label: "Hovedbilde (hero)",
+              },
+              {
+                type: "string",
+                name: "stat1Value",
+                label: "Statistikk 1: Verdi",
+              },
+              {
+                type: "string",
+                name: "stat1Label",
+                label: "Statistikk 1: Etikett",
+              },
+              {
+                type: "string",
+                name: "stat2Value",
+                label: "Statistikk 2: Verdi",
+              },
+              {
+                type: "string",
+                name: "stat2Label",
+                label: "Statistikk 2: Etikett",
+              },
+              {
+                type: "string",
+                name: "stat3Value",
+                label: "Statistikk 3: Verdi",
+              },
+              {
+                type: "string",
+                name: "stat3Label",
+                label: "Statistikk 3: Etikett",
+              },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde (Om meg-seksjon)",
+              },
+              {
+                type: "string",
+                name: "aboutName",
+                label: "Om meg: Navn",
+              },
+              {
+                type: "string",
+                name: "aboutText1",
+                label: "Om meg: Avsnitt 1",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "aboutText2",
+                label: "Om meg: Avsnitt 2",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "quote",
+                label: "Sitat",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "quoteAuthor",
+                label: "Sitatforfatter",
+              },
+              {
+                type: "string",
+                name: "ctaTitle",
+                label: "Call-to-action tittel",
+              },
+              {
+                type: "string",
+                name: "ctaDescription",
+                label: "Call-to-action beskrivelse",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "servicesHeading",
+                label: "Tjenester-seksjon: Overskrift",
+              },
+              {
+                type: "string",
+                name: "blogHeading",
+                label: "Blogg-seksjon: Overskrift",
+              },
+            ],
           },
           {
-            type: 'string',
-            name: 'subtitle',
-            label: 'Undertittel',
+            name: "standard",
+            label: "Standard side",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "image",
+                name: "profileImage",
+                label: "Profilbilde",
+              },
+              {
+                type: "rich-text",
+                name: "body",
+                label: "Innhold",
+                isBody: true,
+              },
+              {
+                type: "string",
+                name: "contactName",
+                label: "Kontaktinfo: Navn",
+              },
+              {
+                type: "string",
+                name: "contactLocation",
+                label: "Kontaktinfo: Sted",
+              },
+              {
+                type: "string",
+                name: "contactEmail",
+                label: "Kontaktinfo: E-post",
+              },
+              {
+                type: "object",
+                name: "verdier",
+                label: "Verdier",
+                list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item?.tittel || "Ny verdi" };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "tittel",
+                    label: "Tittel",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "tekst",
+                    label: "Beskrivelse",
+                    ui: { component: "textarea" },
+                    required: true,
+                  },
+                ],
+              },
+            ],
           },
           {
-            type: 'string',
-            name: 'intro',
-            label: 'Introtekst',
-            ui: { component: 'textarea' },
+            name: "header",
+            label: "Side med kun header",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" },
+              },
+            ],
           },
           {
-            type: 'rich-text',
-            name: 'body',
-            label: 'Innhold',
-            isBody: true,
+            name: "services",
+            label: "Tjenester-side",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "subtitle",
+                label: "Undertittel",
+              },
+              {
+                type: "string",
+                name: "intro",
+                label: "Introtekst",
+                ui: { component: "textarea" },
+              },
+              {
+                type: "string",
+                name: "infoBadge",
+                label: "Informasjonsbadge tekst",
+                description: "Tekst som vises i infoboksen øverst på siden",
+              },
+              {
+                type: "object",
+                name: "faq",
+                label: "Vanlige spørsmål",
+                list: true,
+                ui: {
+                  itemProps: (item) => {
+                    return { label: item?.question || "Nytt spørsmål" };
+                  },
+                },
+                fields: [
+                  {
+                    type: "string",
+                    name: "question",
+                    label: "Spørsmål",
+                    required: true,
+                  },
+                  {
+                    type: "string",
+                    name: "answer",
+                    label: "Svar",
+                    ui: { component: "textarea" },
+                    required: true,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            name: "kontakt",
+            label: "Kontaktinformasjon",
+            fields: [
+              {
+                type: "string",
+                name: "title",
+                label: "Sidetittel",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "string",
+                name: "kicker",
+                label: "Kicker-tekst",
+              },
+              {
+                type: "string",
+                name: "heading",
+                label: "Overskrift",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "description",
+                label: "Beskrivelse",
+                ui: { component: "textarea" },
+                required: true,
+              },
+              {
+                type: "string",
+                name: "addressLine1",
+                label: "Adresse linje 1",
+              },
+              {
+                type: "string",
+                name: "addressLine2",
+                label: "Adresse linje 2",
+              },
+              {
+                type: "string",
+                name: "addressLine3",
+                label: "Adresse linje 3",
+              },
+              {
+                type: "string",
+                name: "email",
+                label: "E-postadresse",
+                required: true,
+              },
+              {
+                type: "string",
+                name: "phone",
+                label: "Telefonnummer",
+                required: true,
+              },
+            ],
           },
         ],
       },
 
       /* ── SERVICES (tjenester) ──────────────────────────────── */
       {
-        name: 'tjenester',
-        label: 'Tjenester',
-        path: 'content/tjenester',
-        format: 'json',
+        name: "tjenester",
+        label: "Tjenester",
+        path: "content/tjenester",
+        format: "json",
         ui: {
           filename: {
             readonly: false,
             slugify: (values) =>
-              values?.['tittel']
-                ? (values['tittel'] as string)
+              values?.["tittel"]
+                ? (values["tittel"] as string)
                     .toLowerCase()
-                    .replace(/æ/g, 'ae')
-                    .replace(/ø/g, 'o')
-                    .replace(/å/g, 'a')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-|-$/g, '')
-                : 'tjeneste',
+                    .replace(/æ/g, "ae")
+                    .replace(/ø/g, "o")
+                    .replace(/å/g, "a")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                : "tjeneste",
           },
         },
         fields: [
           {
-            type: 'string',
-            name: 'tittel',
-            label: 'Tittel',
+            type: "string",
+            name: "tittel",
+            label: "Tittel",
             isTitle: true,
             required: true,
           },
           {
-            type: 'string',
-            name: 'undertittel',
-            label: 'Undertittel',
+            type: "string",
+            name: "undertittel",
+            label: "Undertittel",
             required: true,
           },
           {
-            type: 'string',
-            name: 'badge',
-            label: 'Badge (valgfritt)',
+            type: "string",
+            name: "badge",
+            label: "Badge (valgfritt)",
             description: 'F.eks. "Populær" eller "Fleksibelt"',
           },
           {
-            type: 'string',
-            name: 'beskrivelse',
-            label: 'Beskrivelse',
-            ui: { component: 'textarea' },
+            type: "string",
+            name: "beskrivelse",
+            label: "Beskrivelse",
+            ui: { component: "textarea" },
             required: true,
           },
           {
-            type: 'string',
-            name: 'detaljer',
-            label: 'Detaljer',
+            type: "string",
+            name: "detaljer",
+            label: "Detaljer",
             list: true,
           },
           {
-            type: 'object',
-            name: 'priser',
-            label: 'Priser',
+            type: "object",
+            name: "priser",
+            label: "Priser",
             list: true,
             fields: [
               {
-                type: 'string',
-                name: 'label',
+                type: "string",
+                name: "label",
                 label: 'Label (f.eks. "60 min")',
                 required: true,
               },
               {
-                type: 'string',
-                name: 'pris',
+                type: "string",
+                name: "pris",
                 label: 'Pris (f.eks. "950 kr")',
                 required: true,
               },
             ],
           },
           {
-            type: 'number',
-            name: 'orden',
-            label: 'Sorteringsrekkefølge',
-            description: 'Lavere tall vises først',
+            type: "number",
+            name: "orden",
+            label: "Sorteringsrekkefølge",
+            description: "Lavere tall vises først",
           },
         ],
       },
 
       /* ── EDUCATION (utdanning) ──────────────────────────────── */
       {
-        name: 'utdanning',
-        label: 'Utdanning og kurs',
-        path: 'content/utdanning',
-        format: 'json',
+        name: "utdanning",
+        label: "Utdanning og kurs",
+        path: "content/utdanning",
+        format: "json",
         ui: {
           filename: {
             readonly: false,
             slugify: (values) =>
-              values?.['grad']
-                ? (values['grad'] as string)
+              values?.["grad"]
+                ? (values["grad"] as string)
                     .toLowerCase()
-                    .replace(/æ/g, 'ae')
-                    .replace(/ø/g, 'o')
-                    .replace(/å/g, 'a')
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-|-$/g, '')
-                : 'utdanning',
+                    .replace(/æ/g, "ae")
+                    .replace(/ø/g, "o")
+                    .replace(/å/g, "a")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-|-$/g, "")
+                : "utdanning",
           },
         },
         fields: [
           {
-            type: 'string',
-            name: 'ar',
-            label: 'År',
+            type: "string",
+            name: "ar",
+            label: "År",
             required: true,
           },
           {
-            type: 'string',
-            name: 'grad',
-            label: 'Grad/kurs',
+            type: "string",
+            name: "grad",
+            label: "Grad/kurs",
             isTitle: true,
             required: true,
           },
           {
-            type: 'string',
-            name: 'sted',
-            label: 'Institusjon',
+            type: "string",
+            name: "sted",
+            label: "Institusjon",
             required: true,
           },
         ],
       },
     ],
   },
-})
+});

@@ -1,0 +1,47 @@
+import type { ReactNode } from "react";
+
+const PageHeader = ({
+  pageName,
+  title,
+  subtitle,
+  description,
+  tinaFields,
+}: {
+  pageName: string;
+  title: string;
+  subtitle?: string;
+  description: string | ReactNode;
+  tinaFields?: {
+    title?: any;
+    subtitle?: any;
+    description?: any;
+  };
+}) => {
+  return (
+    <section className="rise-in py-5">
+      <p className="island-kicker mb-3">{pageName}</p>
+      <h1 
+        className="display-title mb-4 max-w-2xl text-4xl font-bold text-foreground sm:text-5xl"
+        data-tina-field={tinaFields?.title}
+      >
+        {title}
+      </h1>
+      {subtitle && (
+        <p 
+          className="mb-4 text-lg text-sea-ink-soft"
+          data-tina-field={tinaFields?.subtitle}
+        >
+          {subtitle}
+        </p>
+      )}
+      <p 
+        className="max-w-xl text-sea-ink-soft leading-relaxed"
+        data-tina-field={tinaFields?.description}
+      >
+        {description}
+      </p>
+    </section>
+  );
+};
+
+export default PageHeader;
