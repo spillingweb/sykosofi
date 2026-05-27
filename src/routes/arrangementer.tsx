@@ -36,7 +36,8 @@ function formatDate(dateStr: string) {
 }
 
 function ArrangementKort({ arr }: { arr: any }) {
-  const category = (arr.category as any)?.value || arr.category || 'dialog'
+  const categoryValue = arr.category && typeof arr.category === 'object' ? arr.category.value : arr.category
+  const category = categoryValue || 'dialog'
   
   return (
     <article className="island-shell rounded-2xl overflow-hidden">
@@ -258,7 +259,8 @@ function Arrangementer() {
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 opacity-70">
             {tidligere.map((arr) => {
-              const category = (arr.category as any)?.value || arr.category || 'dialog'
+              const categoryValue = arr.category && typeof arr.category === 'object' ? arr.category.value : arr.category
+              const category = categoryValue || 'dialog'
               return (
                 <article key={arr.id} className="island-shell rounded-2xl p-5">
                   <div className="mb-2 flex items-center gap-2">
