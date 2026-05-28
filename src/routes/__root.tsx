@@ -1,4 +1,4 @@
-import { HeadContent, Scripts, createRootRoute, useRouter } from '@tantml:parameter>
+import { HeadContent, Scripts, createRootRoute, useRouter } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
