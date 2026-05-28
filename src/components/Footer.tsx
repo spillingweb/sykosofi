@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { useServerFn } from '@tanstack/react-start'
 import { Link } from '@tanstack/react-router'
 import { Button } from './ui/button'
@@ -7,32 +7,35 @@ import { Textarea } from './ui/textarea'
 import { Label } from './ui/label'
 import { sendKontaktskjema } from '#/server/kontakt'
 import { useTina, tinaField } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
 
-interface FooterProps {
-  initialData: any
-}
-
-export default function Footer({ initialData }: FooterProps) {
+export default function Footer() {
   const year = new Date().getFullYear()
   const send = useServerFn(sendKontaktskjema)
-
-  // Enable live preview for contact info
-  const { data } = useTina({
-    query: initialData.query,
-    variables: initialData.variables,
-    data: initialData.data,
-  })
+  const [kontaktData, setKontaktData] = useState<any>(null)
   
-  const page = data.pages
-  
-  // Type guard: ensure we have kontakt template
-  if (page.__typename !== 'PagesKontakt') {
-    throw new Error('Expected kontakt template for kontakt-info.md')
-  }
-
+  // ALL hooks must be called before any conditional returns
   const [form, setForm] = useState({ navn: '', epost: '', telefon: '', melding: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'feil'>('idle')
   const [feilmelding, setFeilmelding] = useState('')
+
+  useEffect(() => {
+    client.queries.pages({ relativePath: 'kontakt-info.md' }).then(setKontaktData)
+  }, [])
+
+  // Enable live preview for contact info
+  const { data } = useTina({
+    query: kontaktData?.query,
+    variables: kontaktData?.variables,
+    data: kontaktData?.data,
+  })
+  
+  const page = data?.pages
+  
+  // Type guard: ensure we have kontakt template - NOW it's safe to return early
+  if (!data || page.__typename !== 'PagesKontakt') {
+    return null
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -182,7 +185,7 @@ export default function Footer({ initialData }: FooterProps) {
                   <Textarea
                     id="melding"
                     rows={5}
-                    placeholder="Fortell gjerne hva du lurer p├Ñ, eller hva du ├©nsker hjelp til..."
+                    placeholder="Fortell gjerne hva du lurer på, eller hva du ønsker hjelp til..."
                     value={form.melding}
                     onChange={(e) => setForm({ ...form, melding: e.target.value })}
                     required
@@ -196,7 +199,7 @@ export default function Footer({ initialData }: FooterProps) {
                 )}
 
                 <Button type="submit" className="w-full" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'SenderÔÇª' : 'Send melding'}
+                  {status === 'sending' ? 'Sender...' : 'Send melding'}
                 </Button>
                 <p className="text-center text-xs text-sea-ink-soft">
                   Informasjonen din behandles konfidensielt.
@@ -221,7 +224,7 @@ export default function Footer({ initialData }: FooterProps) {
               <Link to="/arrangementer" className="hover:text-foreground">Arrangementer</Link>
             </nav>
             <p className="text-sm text-sea-ink-soft">
-              &copy; {year} Spilling Web. Alle rettigheter forbeholdt.
+              &copy; {year} <a href="https://spillingweb.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">Spilling Web</a>. Alle rettigheter forbeholdt.
             </p>
           </div>
         </div>
