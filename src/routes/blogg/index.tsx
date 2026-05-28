@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "#/components/ui/card";
 import PageHeader from "#/components/PageHeader";
+import ContentLayout from "#/components/ContentLayout";
 import { client } from '../../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 
@@ -62,11 +63,11 @@ function Blogg() {
   const rest = posts.slice(1)
   
   if (!featured) {
-    return <main className="page-wrap px-4 py-12"><p>Ingen blogginnlegg funnet.</p></main>
+    return <ContentLayout><p>Ingen blogginnlegg funnet.</p></ContentLayout>
   }
 
   return (
-    <main className="page-wrap px-4 py-12">
+    <ContentLayout>
       {/* Header */}
       <PageHeader
         pageName="Blogg"
@@ -178,6 +179,6 @@ function Blogg() {
           </Link>
         ))}
       </div>
-    </main>
+    </ContentLayout>
   );
 }

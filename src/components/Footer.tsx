@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+﻿import { useState } from 'react'
 import { useServerFn } from '@tanstack/react-start'
 import { Link } from '@tanstack/react-router'
 import { Button } from './ui/button'
@@ -7,34 +7,32 @@ import { Textarea } from './ui/textarea'
 import { Label } from './ui/label'
 import { sendKontaktskjema } from '#/server/kontakt'
 import { useTina, tinaField } from 'tinacms/dist/react'
-import { client } from '../../tina/__generated__/client'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
-export default function Footer() {
+interface FooterProps {
+  initialData: any
+}
+
+export default function Footer({ initialData }: FooterProps) {
   const year = new Date().getFullYear()
   const send = useServerFn(sendKontaktskjema)
-  const [kontaktData, setKontaktData] = useState<any>(null)
   
-  // ALL hooks must be called before any conditional returns
   const [form, setForm] = useState({ navn: '', epost: '', telefon: '', melding: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'feil'>('idle')
   const [feilmelding, setFeilmelding] = useState('')
 
-  useEffect(() => {
-    client.queries.pages({ relativePath: 'kontakt-info.md' }).then(setKontaktData)
-  }, [])
-
   // Enable live preview for contact info
   const { data } = useTina({
-    query: kontaktData?.query,
-    variables: kontaktData?.variables,
-    data: kontaktData?.data,
+    query: initialData.query,
+    variables: initialData.variables,
+    data: initialData.data,
   })
   
-  const page = data?.pages
+  const page = data.pages
   
-  // Type guard: ensure we have kontakt template - NOW it's safe to return early
-  if (!data || page.__typename !== 'PagesKontakt') {
-    return null
+  // Type guard: ensure we have kontakt template
+  if (page.__typename !== 'PagesKontakt') {
+    throw new Error('Expected kontakt template for kontakt-info.md')
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -81,10 +79,7 @@ export default function Footer() {
 
             <div className="space-y-4 text-sm text-sea-ink-soft">
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
-                  <path d="M10 11a2 2 0 100-4 2 2 0 000 4z" fill="currentColor" />
-                  <path d="M10 2C6.686 2 4 4.686 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.314-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                </svg>
+                <MapPin className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">Adresse</p>
                   <p data-tina-field={tinaField(page, 'addressLine1')}>{page.addressLine1}</p>
@@ -95,10 +90,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
-                  <path d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M3 8l7 5 7-5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                </svg>
+                <Mail className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">E-post</p>
                   <a 
@@ -111,9 +103,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg viewBox="0 0 20 20" width="18" height="18" fill="none" className="mt-0.5 shrink-0 text-accent">
-                  <path d="M2 5a2 2 0 012-2h2.28a1 1 0 01.95.68l1.1 3.3a1 1 0 01-.23 1.02L6.8 9.32a11.05 11.05 0 005.88 5.88l1.32-1.32a1 1 0 011.02-.23l3.3 1.1A1 1 0 0119 15.72V18a2 2 0 01-2 2h-1C7.16 20 0 12.84 0 4V3a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                </svg>
+                <Phone className="text-accent mt-0.5" size={16} />
                 <div>
                   <p className="font-medium text-foreground">Telefon</p>
                   <a 
@@ -214,7 +204,7 @@ export default function Footer() {
           <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
             <div className="flex items-center gap-2">
               <span className="font-serif text-lg font-semibold text-foreground">Filosamtale</span>
-              <span className="text-sea-ink-soft">ÔÇö</span>
+              <span className="text-sea-ink-soft">—</span>
               <span className="text-sm text-sea-ink-soft">Fevik, Agder</span>
             </div>
             <nav className="flex flex-wrap justify-center gap-x-5 gap-y-1 text-sm text-sea-ink-soft">

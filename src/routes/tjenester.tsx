@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '#/components/ui/button'
 import { Badge } from '#/components/ui/badge'
 import PageHeader from '#/components/PageHeader'
+import ContentLayout from '#/components/ContentLayout'
 import { client } from '../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 
@@ -50,7 +51,7 @@ function TjenesterPage() {
     .sort((a, b) => (a.orden || 999) - (b.orden || 999))
 
   return (
-    <main className="page-wrap px-4 py-12">
+    <ContentLayout className="md:px-0">
       {/* Header */}
       <PageHeader
         pageName="Tjenester og priser"
@@ -192,6 +193,6 @@ function TjenesterPage() {
           <a href="#kontakt">Ta kontakt for en uforpliktende samtale</a>
         </Button>
       </div>
-    </main>
+    </ContentLayout>
   )
 }

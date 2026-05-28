@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { Button } from '#/components/ui/button'
 import { Badge } from '#/components/ui/badge'
 import PageHeader from '#/components/PageHeader'
+import ContentLayout from '#/components/ContentLayout'
 import { client } from '../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
 
@@ -206,7 +207,7 @@ function Arrangementer() {
   const tidligere = alleArrangementer.filter(arr => new Date(arr.date) < now)
 
   return (
-    <main className="page-wrap px-4 py-12">
+    <ContentLayout>
       {/* Header */}
       <PageHeader
         pageName="Arrangementer"
@@ -259,7 +260,7 @@ function Arrangementer() {
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 opacity-70">
             {tidligere.map((arr) => {
-              const categoryValue = arr.category && typeof arr.category === 'object' ? arr.category.value : arr.category
+              const categoryValue = typeof arr.category === 'object' && arr.category !== null ? (arr.category as any)?.value : arr.category
               const category = categoryValue || 'dialog'
               return (
                 <article key={arr.id} className="island-shell rounded-2xl p-5">
@@ -307,6 +308,6 @@ function Arrangementer() {
           <Link to="/tjenester">Se alle tjenester</Link>
         </Button>
       </div>
-    </main>
+    </ContentLayout>
   )
 }
