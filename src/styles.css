@@ -236,6 +236,19 @@ body::after {
 a {
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+  /* color: inherit; */
+}
+
+/* Prose link styling (for rich-text content like event descriptions) */
+.prose a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--accent);
 }
 
 code {

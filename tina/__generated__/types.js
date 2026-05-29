@@ -32,7 +32,6 @@ export const ArrangementerPartsFragmentDoc = gql`
   category
   isOnline
   registrationUrl
-  body
 }
     `;
 export const PagesPartsFragmentDoc = gql`
@@ -109,7 +108,7 @@ export const TjenesterPartsFragmentDoc = gql`
   tittel
   undertittel
   badge
-  beskrivelse
+  description
   detaljer
   priser {
     __typename

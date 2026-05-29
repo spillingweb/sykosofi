@@ -173,7 +173,7 @@ type BloggConnection implements Connection {
 
 type Arrangementer implements Node & Document {
   title: String!
-  description: String!
+  description: JSON!
   image: String
   date: String!
   endDate: String
@@ -184,7 +184,6 @@ type Arrangementer implements Node & Document {
   category: String!
   isOnline: Boolean
   registrationUrl: String
-  body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -197,7 +196,7 @@ input BooleanFilter {
 
 input ArrangementerFilter {
   title: StringFilter
-  description: StringFilter
+  description: RichTextFilter
   image: ImageFilter
   date: DatetimeFilter
   endDate: DatetimeFilter
@@ -208,7 +207,6 @@ input ArrangementerFilter {
   category: StringFilter
   isOnline: BooleanFilter
   registrationUrl: StringFilter
-  body: RichTextFilter
 }
 
 type ArrangementerConnectionEdges {
@@ -407,7 +405,7 @@ type Tjenester implements Node & Document {
   tittel: String!
   undertittel: String!
   badge: String
-  beskrivelse: String!
+  description: JSON!
   detaljer: [String]
   priser: [TjenesterPriser]
   orden: Float
@@ -425,7 +423,7 @@ input TjenesterFilter {
   tittel: StringFilter
   undertittel: StringFilter
   badge: StringFilter
-  beskrivelse: StringFilter
+  description: RichTextFilter
   detaljer: StringFilter
   priser: TjenesterPriserFilter
   orden: NumberFilter
@@ -515,7 +513,7 @@ input BloggMutation {
 
 input ArrangementerMutation {
   title: String
-  description: String
+  description: JSON
   image: String
   date: String
   endDate: String
@@ -526,7 +524,6 @@ input ArrangementerMutation {
   category: String
   isOnline: Boolean
   registrationUrl: String
-  body: JSON
 }
 
 input PagesHomepageMutation {
@@ -616,7 +613,7 @@ input TjenesterMutation {
   tittel: String
   undertittel: String
   badge: String
-  beskrivelse: String
+  description: JSON
   detaljer: [String]
   priser: [TjenesterPriserMutation]
   orden: Float

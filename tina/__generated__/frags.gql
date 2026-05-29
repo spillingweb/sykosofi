@@ -23,7 +23,6 @@ fragment ArrangementerParts on Arrangementer {
   category
   isOnline
   registrationUrl
-  body
 }
 
 fragment PagesParts on Pages {
@@ -98,7 +97,7 @@ fragment TjenesterParts on Tjenester {
   tittel
   undertittel
   badge
-  beskrivelse
+  description
   detaljer
   priser {
     __typename

@@ -106,10 +106,9 @@ var config_default = defineConfig({
             required: true
           },
           {
-            type: "string",
+            type: "rich-text",
             name: "description",
             label: "Beskrivelse",
-            ui: { component: "textarea" },
             required: true
           },
           {
@@ -173,12 +172,6 @@ var config_default = defineConfig({
             type: "string",
             name: "registrationUrl",
             label: "P\xE5meldingslenke (valgfritt)"
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Utfyllende informasjon",
-            isBody: true
           }
         ]
       },
@@ -552,10 +545,9 @@ var config_default = defineConfig({
             description: 'F.eks. "Popul\xE6r" eller "Fleksibelt"'
           },
           {
-            type: "string",
-            name: "beskrivelse",
+            type: "rich-text",
+            name: "description",
             label: "Beskrivelse",
-            ui: { component: "textarea" },
             required: true
           },
           {

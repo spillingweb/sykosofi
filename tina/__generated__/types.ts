@@ -315,7 +315,7 @@ export type BloggConnection = Connection & {
 export type Arrangementer = Node & Document & {
   __typename?: 'Arrangementer';
   title: Scalars['String']['output'];
-  description: Scalars['String']['output'];
+  description: Scalars['JSON']['output'];
   image?: Maybe<Scalars['String']['output']>;
   date: Scalars['String']['output'];
   endDate?: Maybe<Scalars['String']['output']>;
@@ -326,7 +326,6 @@ export type Arrangementer = Node & Document & {
   category: Scalars['String']['output'];
   isOnline?: Maybe<Scalars['Boolean']['output']>;
   registrationUrl?: Maybe<Scalars['String']['output']>;
-  body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -339,7 +338,7 @@ export type BooleanFilter = {
 
 export type ArrangementerFilter = {
   title?: InputMaybe<StringFilter>;
-  description?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
   image?: InputMaybe<ImageFilter>;
   date?: InputMaybe<DatetimeFilter>;
   endDate?: InputMaybe<DatetimeFilter>;
@@ -350,7 +349,6 @@ export type ArrangementerFilter = {
   category?: InputMaybe<StringFilter>;
   isOnline?: InputMaybe<BooleanFilter>;
   registrationUrl?: InputMaybe<StringFilter>;
-  body?: InputMaybe<RichTextFilter>;
 };
 
 export type ArrangementerConnectionEdges = {
@@ -562,7 +560,7 @@ export type Tjenester = Node & Document & {
   tittel: Scalars['String']['output'];
   undertittel: Scalars['String']['output'];
   badge?: Maybe<Scalars['String']['output']>;
-  beskrivelse: Scalars['String']['output'];
+  description: Scalars['JSON']['output'];
   detaljer?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   priser?: Maybe<Array<Maybe<TjenesterPriser>>>;
   orden?: Maybe<Scalars['Float']['output']>;
@@ -580,7 +578,7 @@ export type TjenesterFilter = {
   tittel?: InputMaybe<StringFilter>;
   undertittel?: InputMaybe<StringFilter>;
   badge?: InputMaybe<StringFilter>;
-  beskrivelse?: InputMaybe<StringFilter>;
+  description?: InputMaybe<RichTextFilter>;
   detaljer?: InputMaybe<StringFilter>;
   priser?: InputMaybe<TjenesterPriserFilter>;
   orden?: InputMaybe<NumberFilter>;
@@ -769,7 +767,7 @@ export type BloggMutation = {
 
 export type ArrangementerMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
-  description?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   date?: InputMaybe<Scalars['String']['input']>;
   endDate?: InputMaybe<Scalars['String']['input']>;
@@ -780,7 +778,6 @@ export type ArrangementerMutation = {
   category?: InputMaybe<Scalars['String']['input']>;
   isOnline?: InputMaybe<Scalars['Boolean']['input']>;
   registrationUrl?: InputMaybe<Scalars['String']['input']>;
-  body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
 export type PagesHomepageMutation = {
@@ -870,7 +867,7 @@ export type TjenesterMutation = {
   tittel?: InputMaybe<Scalars['String']['input']>;
   undertittel?: InputMaybe<Scalars['String']['input']>;
   badge?: InputMaybe<Scalars['String']['input']>;
-  beskrivelse?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
   detaljer?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   priser?: InputMaybe<Array<InputMaybe<TjenesterPriserMutation>>>;
   orden?: InputMaybe<Scalars['Float']['input']>;
@@ -884,7 +881,7 @@ export type UtdanningMutation = {
 
 export type BloggPartsFragment = { __typename: 'Blogg', title: string, excerpt: string, date: string, category?: string | null, readingTime?: number | null, coverImage?: string | null, body?: any | null };
 
-export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null };
+export type ArrangementerPartsFragment = { __typename: 'Arrangementer', title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null };
 
 type PagesParts_PagesHomepage_Fragment = { __typename: 'PagesHomepage', title: string, subtitle?: string | null, kicker?: string | null, heroImage?: string | null, stat1Value?: string | null, stat1Label?: string | null, stat2Value?: string | null, stat2Label?: string | null, stat3Value?: string | null, stat3Label?: string | null, profileImage?: string | null, aboutName?: string | null, aboutText1?: string | null, aboutText2?: string | null, quote?: string | null, quoteAuthor?: string | null, ctaTitle?: string | null, ctaDescription?: string | null, servicesHeading?: string | null, blogHeading?: string | null };
 
@@ -898,7 +895,7 @@ type PagesParts_PagesKontakt_Fragment = { __typename: 'PagesKontakt', title: str
 
 export type PagesPartsFragment = PagesParts_PagesHomepage_Fragment | PagesParts_PagesStandard_Fragment | PagesParts_PagesHeader_Fragment | PagesParts_PagesServices_Fragment | PagesParts_PagesKontakt_Fragment;
 
-export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, beskrivelse: string, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
+export type TjenesterPartsFragment = { __typename: 'Tjenester', tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null };
 
 export type UtdanningPartsFragment = { __typename: 'Utdanning', ar: string, grad: string, sted: string };
 
@@ -926,7 +923,7 @@ export type ArrangementerQueryVariables = Exact<{
 }>;
 
 
-export type ArrangementerQuery = { __typename?: 'Query', arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ArrangementerQuery = { __typename?: 'Query', arrangementer: { __typename: 'Arrangementer', id: string, title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ArrangementerConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -938,7 +935,7 @@ export type ArrangementerConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: string, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ArrangementerConnectionQuery = { __typename?: 'Query', arrangementerConnection: { __typename?: 'ArrangementerConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ArrangementerConnectionEdges', cursor: string, node?: { __typename: 'Arrangementer', id: string, title: string, description: any, image?: string | null, date: string, endDate?: string | null, time: string, location: string, price: number, capacity?: number | null, category: string, isOnline?: boolean | null, registrationUrl?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -964,7 +961,7 @@ export type TjenesterQueryVariables = Exact<{
 }>;
 
 
-export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, beskrivelse: string, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
+export type TjenesterQuery = { __typename?: 'Query', tjenester: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } };
 
 export type TjenesterConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -976,7 +973,7 @@ export type TjenesterConnectionQueryVariables = Exact<{
 }>;
 
 
-export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, beskrivelse: string, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
+export type TjenesterConnectionQuery = { __typename?: 'Query', tjenesterConnection: { __typename?: 'TjenesterConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TjenesterConnectionEdges', cursor: string, node?: { __typename: 'Tjenester', id: string, tittel: string, undertittel: string, badge?: string | null, description: any, detaljer?: Array<string | null> | null, orden?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, priser?: Array<{ __typename: 'TjenesterPriser', label: string, pris: string } | null> | null } | null } | null> | null } };
 
 export type UtdanningQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1024,7 +1021,6 @@ export const ArrangementerPartsFragmentDoc = gql`
   category
   isOnline
   registrationUrl
-  body
 }
     `;
 export const PagesPartsFragmentDoc = gql`
@@ -1101,7 +1097,7 @@ export const TjenesterPartsFragmentDoc = gql`
   tittel
   undertittel
   badge
-  beskrivelse
+  description
   detaljer
   priser {
     __typename

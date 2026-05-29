@@ -107,9 +107,9 @@ function TjenesterPage() {
               </p>
               <p 
                 className="mb-4 text-sea-ink-soft leading-relaxed"
-                data-tina-field={tinaField(tjeneste, 'beskrivelse')}
+                data-tina-field={tinaField(tjeneste, 'description')}
               >
-                {tjeneste.beskrivelse}
+                {tjeneste.description}
               </p>
               <ul className="space-y-1.5" data-tina-field={tinaField(tjeneste, 'detaljer')}>
                 {(tjeneste.detaljer || []).map((detalj, idx) => (

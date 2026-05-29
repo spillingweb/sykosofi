@@ -144,10 +144,9 @@ export default defineConfig({
             required: true,
           },
           {
-            type: "string",
+            type: "rich-text",
             name: "description",
             label: "Beskrivelse",
-            ui: { component: "textarea" },
             required: true,
           },
           {
@@ -211,12 +210,6 @@ export default defineConfig({
             type: "string",
             name: "registrationUrl",
             label: "Påmeldingslenke (valgfritt)",
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Utfyllende informasjon",
-            isBody: true,
           },
         ],
       },
@@ -601,10 +594,9 @@ export default defineConfig({
             description: 'F.eks. "Populær" eller "Fleksibelt"',
           },
           {
-            type: "string",
-            name: "beskrivelse",
+            type: "rich-text",
+            name: "description",
             label: "Beskrivelse",
-            ui: { component: "textarea" },
             required: true,
           },
           {
