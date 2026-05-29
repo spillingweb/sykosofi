@@ -5,6 +5,7 @@ import PageHeader from '#/components/PageHeader'
 import ContentLayout from '#/components/ContentLayout'
 import { client } from '../../tina/__generated__/client'
 import { useTina, tinaField } from 'tinacms/dist/react'
+import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 export const Route = createFileRoute('/tjenester')({
   loader: async () => {
@@ -105,12 +106,12 @@ function TjenesterPage() {
               >
                 {tjeneste.undertittel}
               </p>
-              <p 
-                className="mb-4 text-sea-ink-soft leading-relaxed"
+              <div 
+                className="mb-4 text-sea-ink-soft leading-relaxed prose prose-sm max-w-none"
                 data-tina-field={tinaField(tjeneste, 'description')}
               >
-                {tjeneste.description}
-              </p>
+                <TinaMarkdown content={tjeneste.description} />
+              </div>
               <ul className="space-y-1.5" data-tina-field={tinaField(tjeneste, 'detaljer')}>
                 {(tjeneste.detaljer || []).map((detalj, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-sea-ink-soft">
@@ -190,7 +191,7 @@ function TjenesterPage() {
       {/* CTA */}
       <div className="mt-8 text-center">
         <Button asChild size="lg">
-          <a href="#kontakt">Ta kontakt for en uforpliktende samtale</a>
+          <a href="#kontakt">Ta kontakt for en samtale</a>
         </Button>
       </div>
     </ContentLayout>
