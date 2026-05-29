@@ -1,6 +1,6 @@
 ---
 title: Finn mening og retning gjennom filosofisk dialog
-subtitle: 'Jeg er sykepleier og filosof, og hjelper deg å utforske livets store spørsmål — om mening, verdier, identitet og hvordan vi ønsker å leve. Gjennom samtale og refleksjon finner vi klarhet og retning.'
+subtitle: 'Jeg er sykepleier med videreutdanning i filosofi, og hjelper deg å utforske livets store spørsmål — om mening, verdier, identitet og hvordan vi ønsker å leve. Gjennom samtale og refleksjon finner vi klarhet og retning.'
 kicker: 'Filosofisk veiledning · Fevik, Agder'
 heroImage: /uploads/hero-chairs.jpg
 stat1Value: 10+
